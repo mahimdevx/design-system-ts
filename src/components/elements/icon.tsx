@@ -13,10 +13,7 @@ type IconProps = Omit<SVGProps<SVGSVGElement>, "ref"> &
     name: keyof typeof icons;
   };
 
-export const Icon = forwardRef<SVGSVGElement, IconProps>(function Icon(
-  { name, size, className, ...props },
-  ref
-) {
+export const Icon = forwardRef<SVGSVGElement, IconProps>(function Icon({ name, size, className, ...props }, ref) {
   const Component = icons?.[name];
 
   const iconClasses = iconVariants({ size, className });

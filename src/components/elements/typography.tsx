@@ -11,11 +11,7 @@ type TypographyProps = HTMLAttributes<HTMLElement> &
     children: ReactNode;
   };
 
-export function Typography({
-  type = "p",
-  className,
-  ...props
-}: TypographyProps & { type?: ElementType }) {
+export function Typography({ type = "p", className, ...props }: TypographyProps & { type?: ElementType }) {
   const Component = type as ElementType;
 
   const typographyClasses = typographyVariants({ type, className });
