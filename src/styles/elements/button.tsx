@@ -25,9 +25,16 @@ export const buttonVariants = tv({
       secondary: "bg-secondary text-secondary-foreground",
       accent: "bg-accent text-accent-foreground",
       soft: "bg-primary/5 text-primary",
-      outline: ["border-primary text-primary bg-transparent", "hover:bg-primary hover:text-primary-foreground"],
+      outline: [
+        "border-primary text-primary bg-transparent",
+        "hover:bg-primary hover:text-primary-foreground"
+      ],
       muted: "bg-muted text-muted-foreground",
-      destructive: ["bg-destructive text-destructive-foreground", "border-transparent", "shadow-none"],
+      destructive: [
+        "bg-destructive text-destructive-foreground",
+        "border-transparent",
+        "shadow-none"
+      ],
       link: ["text-primary bg-transparent underline-offset-4", "hover:underline"]
     },
     iconOnly: {
