@@ -12,38 +12,19 @@ export default function Home() {
   return (
     <main className="flex w-full max-w-3xl flex-col items-center justify-between px-16 py-32 2xl:items-start">
       <div className="outline-foreground/50 flex flex-wrap items-center gap-4 rounded-lg p-6 shadow-md outline">
-        <div
-          className={clsx("bg-background", "h-12 w-12", "rounded-md")}
-        ></div>
+        <div className={clsx("bg-background", "h-12 w-12", "rounded-md")}></div>
 
-        <Typography
-          type="h1"
-          className={clsx("text-foreground font-poppins!")}
-        >
+        <Typography type="h1" className={clsx("text-foreground font-poppins!")}>
           HEading 1
         </Typography>
 
-        <div
-          className={clsx("bg-foreground", "h-12 w-12", "rounded-md")}
-        ></div>
-        <div
-          className={clsx("bg-primary", "h-12 w-12", "rounded-md")}
-        ></div>
-        <div
-          className={clsx("bg-secondary", "h-12 w-12", "rounded-md")}
-        ></div>
-        <div
-          className={clsx(
-            "bg-accent animate-bounce",
-            "h-12 w-12",
-            "rounded-md"
-          )}
-        ></div>
+        <div className={clsx("bg-foreground", "h-12 w-12", "rounded-md")}></div>
+        <div className={clsx("bg-primary", "h-12 w-12", "rounded-md")}></div>
+        <div className={clsx("bg-secondary", "h-12 w-12", "rounded-md")}></div>
+        <div className={clsx("bg-accent animate-bounce", "h-12 w-12", "rounded-md")}></div>
         <ThemeToggle />
         <div className={clsx("bg-muted", "h-12 w-12", "rounded-md")}></div>
-        <div
-          className={clsx("bg-destructive", "h-12 w-12", "rounded-md")}
-        ></div>
+        <div className={clsx("bg-destructive", "h-12 w-12", "rounded-md")}></div>
       </div>
 
       <div className={clsx("mt-16 flex flex-wrap gap-4")}>

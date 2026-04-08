@@ -21,11 +21,7 @@ export default function ThemeToggle() {
   const isLight = theme === "light";
 
   return (
-    <Button
-      aria-label="Toggle Theme"
-      onClick={() => setTheme(isLight ? "dark" : "light")}
-      iconOnly
-    >
+    <Button aria-label="Toggle Theme" onClick={() => setTheme(isLight ? "dark" : "light")} iconOnly>
       <Icon
         name="Sun"
         className={clsx(

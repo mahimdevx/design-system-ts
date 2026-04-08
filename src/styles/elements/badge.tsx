@@ -9,13 +9,13 @@ export const badgeVariants = tv({
   ],
   variants: {
     variant: {
-      primary: "border-transparent bg-primary text-primary-foreground",
-      secondary: "border-transparent bg-secondary text-secondary-foreground",
-      soft: "border-transparent bg-primary/5 text-primary",
-      outline: "border-primary bg-transparent text-primary",
-      accent: "border-transparent bg-accent text-accent-foreground",
-      muted: "border-transparent bg-muted text-muted-foreground",
-      destructive: "border-transparent bg-destructive text-destructive-foreground"
+      primary: "bg-primary text-primary-foreground border-transparent",
+      secondary: "bg-secondary text-secondary-foreground border-transparent",
+      soft: "bg-primary/5 text-primary border-transparent",
+      outline: "border-primary text-primary bg-transparent",
+      accent: "bg-accent text-accent-foreground border-transparent",
+      muted: "bg-muted text-muted-foreground border-transparent",
+      destructive: "bg-destructive text-destructive-foreground border-transparent"
     }
   },
   defaultVariants: {

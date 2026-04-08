@@ -10,10 +10,7 @@ import { tooltipVariants } from "@styles/elements/tooltip";
 
 type TooltipProviderProps = ComponentProps<typeof TooltipPrimitive.Provider>;
 
-export function TooltipProvider({
-  delayDuration = 0,
-  ...props
-}: TooltipProviderProps) {
+export function TooltipProvider({ ...props }: TooltipProviderProps) {
   return (
     <TooltipPrimitive.Provider
       data-slot="tooltip-provider"
@@ -42,18 +39,11 @@ export function TooltipTrigger({ ...props }: TooltipTriggerProps) {
   return <TooltipPrimitive.Trigger data-slot="tooltip-trigger" {...props} />;
 }
 
-type ContentProps = ComponentProps<typeof TooltipPrimitive.Content> &
-  VariantProps<typeof tooltipVariants>;
+type ContentProps = ComponentProps<typeof TooltipPrimitive.Content> & VariantProps<typeof tooltipVariants>;
 
 const { contentVariants, arrowVariants } = tooltipVariants();
 
-export function TooltipContent({
-  sideOffset = -4,
-  variant,
-  className,
-  children,
-  ...props
-}: ContentProps) {
+export function TooltipContent({ sideOffset = -4, variant, className, children, ...props }: ContentProps) {
   const contentClasses = contentVariants({ variant, className });
   const arrowClasses = arrowVariants({ variant });
 

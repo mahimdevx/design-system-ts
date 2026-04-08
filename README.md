@@ -30,6 +30,7 @@ This is a comprehensive design system starter that demonstrates best practices f
 ## 🚀 Quick Start
 
 ### Prerequisites
+
 - Node.js 18+ (recommended 20+)
 - npm/yarn/pnpm
 
@@ -81,6 +82,7 @@ src/
 ### Element Component Example
 
 **Component**: `src/components/elements/button.tsx`
+
 ```typescript
 "use client";
 
@@ -93,6 +95,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 ```
 
 **Variants**: `src/styles/elements/button.tsx`
+
 ```typescript
 import { tv } from "tailwind-variants";
 
@@ -127,6 +130,7 @@ npm run prettier:check # Check formatting
 ## 🌙 Dark Mode
 
 Built-in theme support via `next-themes`:
+
 - Light/Dark mode toggle
 - System preference detection
 - Persisted theme preference

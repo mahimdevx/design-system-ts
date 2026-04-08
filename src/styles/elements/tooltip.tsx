@@ -23,8 +23,7 @@ export const tooltipVariants = tv({
         arrowVariants: "fill-primary"
       },
       secondary: {
-        contentVariants:
-          "bg-secondary text-secondary-foreground border-secondary",
+        contentVariants: "bg-secondary text-secondary-foreground border-secondary",
         arrowVariants: "fill-secondary"
       },
       accent: {
@@ -36,8 +35,7 @@ export const tooltipVariants = tv({
         arrowVariants: "fill-muted"
       },
       destructive: {
-        contentVariants:
-          "bg-destructive text-primary-foreground border-destructive",
+        contentVariants: "bg-destructive text-primary-foreground border-destructive",
         arrowVariants: "fill-destructive"
       }
     }

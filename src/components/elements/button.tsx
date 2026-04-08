@@ -20,32 +20,32 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
 ) {
   const Component = asChild ? Slot : "button";
 
-  const btnClasses = buttonVariants({size, iconOnly, variant, rounded, className});
+  const btnClasses = buttonVariants({ size, iconOnly, variant, rounded, className });
 
   return <Component ref={ref} className={btnClasses} {...props} />;
 });
 
 Button.displayName = "Button";
 
-function Button({
-  className,
-  variant = "default",
-  size = "default",
-  asChild = false,
-  ...props
-}: React.ComponentProps<"button"> &
-  VariantProps<typeof buttonVariants> & {
-    asChild?: boolean;
-  }) {
-  const Comp = asChild ? Slot.Root : "button";
+// function Button({
+//   className,
+//   variant = "default",
+//   size = "default",
+//   asChild = false,
+//   ...props
+// }: React.ComponentProps<"button"> &
+//   VariantProps<typeof buttonVariants> & {
+//     asChild?: boolean;
+//   }) {
+//   const Comp = asChild ? Slot.Root : "button";
 
-  return (
-    <Comp
-      data-slot="button"
-      data-variant={variant}
-      data-size={size}
-      className={cn(buttonVariants({ variant, size, className }))}
-      {...props}
-    />
-  );
-}
+//   return (
+//     <Comp
+//       data-slot="button"
+//       data-variant={variant}
+//       data-size={size}
+//       className={cn(buttonVariants({ variant, size, className }))}
+//       {...props}
+//     />
+//   );
+// }

@@ -9,6 +9,7 @@ Be respectful and constructive in all interactions.
 ## Getting Started
 
 ### Prerequisites
+
 - Node.js 18+
 - Git
 - GitHub account
@@ -36,6 +37,7 @@ git checkout -b feature/your-feature-name
 ```
 
 Use descriptive branch names:
+
 - `feature/add-button-component`
 - `fix/tooltip-positioning`
 - `docs/update-readme`
@@ -66,7 +68,8 @@ Format: `<type>(<scope>): <subject>`
 
 **Scope** (optional): component or area being changed
 
-**Subject**: 
+**Subject**:
+
 - Imperative mood ("add" not "added")
 - Don't capitalize
 - No period at end
@@ -75,23 +78,27 @@ Format: `<type>(<scope>): <subject>`
 ### 4. Code Standards
 
 #### TypeScript
+
 - Use strict mode
 - Add type annotations for function parameters and returns
 - Avoid `any` types
 
 #### React Components
+
 - Use `"use client"` for client components
 - Use `forwardRef` for ref-forwarding components
 - Export component with `export const` not `export default`
 - Add `displayName` for debuggability
 
 #### Styling
+
 - Use Tailwind CSS classes
 - Define variants in `src/styles/elements/`
 - Use `tailwind-variants` for complex component styles
 - Keep base classes organized and documented
 
 #### Code Formatting
+
 ```bash
 # Format code
 npm run prettier
@@ -134,6 +141,7 @@ git push origin feature/your-feature-name
 ```
 
 Then create a Pull Request on GitHub with:
+
 - Clear title
 - Description of changes
 - Related issue references
@@ -142,23 +150,29 @@ Then create a Pull Request on GitHub with:
 ## PR Guidelines
 
 ### Title Format
+
 - `feat: add component feature`
 - `fix: resolve bug`
 - `docs: update documentation`
 
 ### Description Template
+
 ```markdown
 ## Description
+
 What does this PR do?
 
 ## Related Issues
+
 Closes #123
 
 ## Changes
+
 - Change 1
 - Change 2
 
 ## Testing
+
 How was this tested?
 
 ## Screenshots (if applicable)
@@ -174,14 +188,18 @@ How was this tested?
 ## Issues & Feature Requests
 
 ### Reporting Bugs
+
 Use the bug report template. Include:
+
 - Steps to reproduce
 - Expected behavior
 - Actual behavior
 - Environment (OS, Node version, npm version)
 
 ### Requesting Features
+
 Use the feature request template. Include:
+
 - Use case
 - Proposed solution
 - Alternative solutions

@@ -2,8 +2,6 @@
 
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 
-import * as TooltipPrimitive from "@radix-ui/react-tooltip";
-
 export const ThemeProvider = ({ ...props }) => {
   return <NextThemesProvider {...props} />;
 };
