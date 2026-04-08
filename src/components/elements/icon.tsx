@@ -20,8 +20,5 @@ export const Icon = forwardRef<SVGSVGElement, IconProps>(function Icon({ name, s
 
   if (!Component) return <span>{name[0]}</span>;
 
-  // Lucide icons are SVG components but don't support ref forwarding
   return <Component className={iconClasses} {...props} />;
 });
-
-Icon.displayName = "Icon";

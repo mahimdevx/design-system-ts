@@ -23,9 +23,9 @@ export function TooltipProvider({ ...props }: TooltipProviderProps) {
   );
 }
 
-type TooltipProps = ComponentProps<typeof TooltipPrimitive.Root>;
+type TooltipRootProps = ComponentProps<typeof TooltipPrimitive.Root>;
 
-export function TooltipRoot({ ...props }: TooltipProps) {
+export function TooltipRoot({ ...props }: TooltipRootProps) {
   return (
     <TooltipProvider>
       <TooltipPrimitive.Root data-slot="tooltip" {...props} />
@@ -43,7 +43,9 @@ type ContentProps = ComponentProps<typeof TooltipPrimitive.Content> & VariantPro
 
 export function TooltipContent({ sideOffset = -4, variant, className, children, ...props }: ContentProps) {
   const { contentVariants, arrowVariants } = tooltipVariants();
+
   const contentClasses = contentVariants({ variant, className });
+
   const arrowClasses = arrowVariants({ variant });
 
   return (
@@ -55,18 +57,19 @@ export function TooltipContent({ sideOffset = -4, variant, className, children, 
         {...props}
       >
         {children}
+
         <TooltipPrimitive.Arrow className={arrowClasses} />
       </TooltipPrimitive.Content>
     </TooltipPrimitive.Portal>
   );
 }
 
-interface TooltipAltProps {
+interface TooltipProps {
   children: ReactNode;
   content: string;
 }
 
-export function Tooltip({ children, content, ...props }: TooltipAltProps) {
+export function Tooltip({ children, content, ...props }: TooltipProps) {
   return (
     <TooltipRoot>
       <TooltipTrigger className="mx-1 inline-flex" asChild>

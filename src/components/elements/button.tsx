@@ -24,5 +24,3 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
 
   return <Component ref={ref} className={btnClasses} {...props} />;
 });
-
-Button.displayName = "Button";
