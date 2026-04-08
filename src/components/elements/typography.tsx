@@ -1,6 +1,6 @@
 "use client";
 
-import { HTMLAttributes, ReactNode } from "react";
+import { ElementType, HTMLAttributes, ReactNode } from "react";
 
 import { type VariantProps } from "tailwind-variants";
 
@@ -11,8 +11,12 @@ type TypographyProps = HTMLAttributes<HTMLElement> &
     children: ReactNode;
   };
 
-export function Typography({ type = "p", className, ...props }: TypographyProps) {
-  const Component = type as any;
+export function Typography({
+  type = "p",
+  className,
+  ...props
+}: TypographyProps & { type?: ElementType }) {
+  const Component = type as ElementType;
 
   const typographyClasses = typographyVariants({ type, className });
 
