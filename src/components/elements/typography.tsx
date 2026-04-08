@@ -12,7 +12,7 @@ type TypographyProps = HTMLAttributes<HTMLElement> &
   };
 
 export function Typography({ type = "p", className, ...props }: TypographyProps) {
-  const Component = type;
+  const Component = type as any;
 
   const typographyClasses = typographyVariants({ type, className });
 

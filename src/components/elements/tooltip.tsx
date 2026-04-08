@@ -41,9 +41,8 @@ export function TooltipTrigger({ ...props }: TooltipTriggerProps) {
 
 type ContentProps = ComponentProps<typeof TooltipPrimitive.Content> & VariantProps<typeof tooltipVariants>;
 
-const { contentVariants, arrowVariants } = tooltipVariants();
-
 export function TooltipContent({ sideOffset = -4, variant, className, children, ...props }: ContentProps) {
+  const { contentVariants, arrowVariants } = tooltipVariants();
   const contentClasses = contentVariants({ variant, className });
   const arrowClasses = arrowVariants({ variant });
 

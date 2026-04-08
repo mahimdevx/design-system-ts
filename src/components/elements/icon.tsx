@@ -20,7 +20,7 @@ export const Icon = forwardRef<SVGSVGElement, IconProps>(function Icon({ name, s
 
   if (!Component) return <span>{name[0]}</span>;
 
-  return <Component ref={ref} className={iconClasses} {...props} />;
+  return <Component ref={ref as any} className={iconClasses} {...props} />;
 });
 
 Icon.displayName = "Icon";
