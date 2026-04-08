@@ -2,9 +2,13 @@ import { tv } from "tailwind-variants";
 
 export const calendarVariants = tv({
   slots: {
-    rootVariants: "border-input bg-background w-full max-w-fit overflow-hidden border p-4",
+    rootVariants:
+      "border-input bg-background w-full max-w-fit overflow-hidden border p-4",
     monthsVariants: "relative flex flex-col gap-4 sm:flex-row",
-    navVariants: ["absolute top-0 left-0 z-10", "flex w-full items-center justify-between"],
+    navVariants: [
+      "absolute top-0 left-0 z-10",
+      "flex w-full items-center justify-between"
+    ],
     buttonPreviousVariants: "m-0.5",
     buttonNextVariants: "m-0.5",
     chevronVariants: "",
@@ -19,7 +23,8 @@ export const calendarVariants = tv({
       "text-muted-foreground/40"
     ],
     weeksVariants: "",
-    weekVariants: "flex items-center justify-between first:justify-end last:justify-start",
+    weekVariants:
+      "flex items-center justify-between first:justify-end last:justify-start",
     dayVariants: "group relative m-0.5 p-0",
     dayButtonVariants: [
       "font-mono text-sm leading-[17px] font-semibold",

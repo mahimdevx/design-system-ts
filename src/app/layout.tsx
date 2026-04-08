@@ -25,7 +25,11 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
   const theme = "light";
 
   return (
-    <html lang="en" suppressHydrationWarning className={clsx(poppins.variable, firaCode.variable)}>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={clsx(poppins.variable, firaCode.variable)}
+    >
       <body className={bodyClasses}>
         <ThemeProvider attribute="class" defaultTheme={theme} enableSystem>
           {children}

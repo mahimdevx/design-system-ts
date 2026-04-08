@@ -1,6 +1,5 @@
 import clsx from "clsx";
 
-import { Typography } from "@components/elements/typography";
 // import { Icon } from "@components/elements/icon";
 import { Button } from "@components/elements/button";
 
@@ -22,7 +21,9 @@ export default function Home() {
         <div className={clsx("bg-foreground", "h-12 w-12", "rounded-md")}></div>
         <div className={clsx("bg-primary", "h-12 w-12", "rounded-md")}></div>
         <div className={clsx("bg-secondary", "h-12 w-12", "rounded-md")}></div>
-        <div className={clsx("bg-accent animate-bounce", "h-12 w-12", "rounded-md")}></div>
+        <div
+          className={clsx("bg-accent animate-bounce", "h-12 w-12", "rounded-md")}
+        ></div>
         {/* <ThemeToggle /> */}
         <div className={clsx("bg-muted", "h-12 w-12", "rounded-md")}></div>
         <div className={clsx("bg-destructive", "h-12 w-12", "rounded-md")}></div>
