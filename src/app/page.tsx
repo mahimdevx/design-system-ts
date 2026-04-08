@@ -1,12 +1,13 @@
 import clsx from "clsx";
 
 import { Typography } from "@components/elements/typography";
-import { Icon } from "@components/elements/icon";
+// import { Icon } from "@components/elements/icon";
 import { Button } from "@components/elements/button";
 
 import { Tooltip } from "@components/elements/tooltip";
 
-import ThemeToggle from "@components/layouts/theme-toggle";
+// import ThemeToggle from "@components/layouts/theme-toggle";
+import { Text } from "@components/elements/text";
 
 export default function Home() {
   return (
@@ -14,15 +15,15 @@ export default function Home() {
       <div className="outline-foreground/50 flex flex-wrap items-center gap-4 rounded-lg p-6 shadow-md outline">
         <div className={clsx("bg-background", "h-12 w-12", "rounded-md")}></div>
 
-        <Typography type="h1" className={clsx("text-foreground font-poppins!")}>
+        <Text type="h1" className={clsx("text-foreground font-poppins!")}>
           HEading 1
-        </Typography>
+        </Text>
 
         <div className={clsx("bg-foreground", "h-12 w-12", "rounded-md")}></div>
         <div className={clsx("bg-primary", "h-12 w-12", "rounded-md")}></div>
         <div className={clsx("bg-secondary", "h-12 w-12", "rounded-md")}></div>
         <div className={clsx("bg-accent animate-bounce", "h-12 w-12", "rounded-md")}></div>
-        <ThemeToggle />
+        {/* <ThemeToggle /> */}
         <div className={clsx("bg-muted", "h-12 w-12", "rounded-md")}></div>
         <div className={clsx("bg-destructive", "h-12 w-12", "rounded-md")}></div>
       </div>
@@ -30,7 +31,7 @@ export default function Home() {
       <div className={clsx("mt-16 flex flex-wrap gap-4")}>
         <Button variant="destructive" size="xs">
           Primary Extra Small
-          <Icon name="Search" size="sm" />
+          {/* <Icon name="Search" size="sm" /> */}
         </Button>
 
         <Button variant="destructive" size="sm">
@@ -47,13 +48,13 @@ export default function Home() {
           Primary Large
         </Button>
 
-        <p>
+        <h5>
           lrem ipsum dolor sit amet
           <Tooltip content="This is a simple tooltip">
             <span className="rounded-md">consectetur</span>
           </Tooltip>
           adipisicing elit. Voluptas
-        </p>
+        </h5>
       </div>
     </main>
   );

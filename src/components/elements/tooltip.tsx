@@ -39,16 +39,9 @@ export function TooltipTrigger({ ...props }: TooltipTriggerProps) {
   return <TooltipPrimitive.Trigger data-slot="tooltip-trigger" {...props} />;
 }
 
-type ContentProps = ComponentProps<typeof TooltipPrimitive.Content> &
-  VariantProps<typeof tooltipVariants>;
+type ContentProps = ComponentProps<typeof TooltipPrimitive.Content> & VariantProps<typeof tooltipVariants>;
 
-export function TooltipContent({
-  sideOffset = -4,
-  variant,
-  className,
-  children,
-  ...props
-}: ContentProps) {
+export function TooltipContent({ sideOffset = -4, variant, className, children, ...props }: ContentProps) {
   const { contentVariants, arrowVariants } = tooltipVariants();
 
   const contentClasses = contentVariants({ variant, className });
@@ -85,6 +78,7 @@ export function Tooltip({ children, content, ...props }: TooltipProps) {
 
       <TooltipContent {...props}>
         {content}
+
         <TooltipPrimitive.Arrow />
       </TooltipContent>
     </TooltipRoot>
