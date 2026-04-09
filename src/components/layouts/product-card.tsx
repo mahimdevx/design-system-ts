@@ -4,6 +4,8 @@ import { forwardRef, HTMLAttributes, ReactNode } from "react";
 
 import clsx from "clsx";
 
+import { Icon } from "@components/elements/icon";
+
 type ProductCardProps = HTMLAttributes<HTMLDivElement>;
 
 export const ProductCard = forwardRef<HTMLDivElement, ProductCardProps>(
@@ -38,6 +40,27 @@ export const ProductImage = forwardRef<HTMLDivElement, ProductImageProps>(
 );
 
 ProductImage.displayName = "ProductImage";
+
+type ProductIconProps = HTMLAttributes<HTMLDivElement> & {
+  name: keyof typeof import("lucide-react").icons;
+  size?: "xs" | "sm" | "base" | "lg" | "xl";
+};
+
+export const ProductIcon = forwardRef<HTMLDivElement, ProductIconProps>(
+  function ProductIcon({ name, size = "lg", className, ...props }, ref) {
+    return (
+      <div
+        ref={ref}
+        className={clsx("flex items-center justify-center", className)}
+        {...props}
+      >
+        <Icon name={name} size={size} className="text-muted-foreground" />
+      </div>
+    );
+  }
+);
+
+ProductIcon.displayName = "ProductIcon";
 
 type ProductBadgeProps = HTMLAttributes<HTMLDivElement>;
 
@@ -139,15 +162,15 @@ export const ProductRating = forwardRef<HTMLDivElement, ProductRatingProps>(
       >
         <div className="flex gap-0.5">
           {Array.from({ length: 5 }).map((_, i) => (
-            <span
+            <Icon
               key={i}
+              name="Star"
+              size="sm"
               className={clsx(
-                "text-lg",
+                "fill-current",
                 i < Math.floor(rating) ? "text-yellow-400" : "text-muted-foreground"
               )}
-            >
-              ★
-            </span>
+            />
           ))}
         </div>
         <span className="text-muted-foreground text-xs">
@@ -160,19 +183,29 @@ export const ProductRating = forwardRef<HTMLDivElement, ProductRatingProps>(
 
 ProductRating.displayName = "ProductRating";
 
-type ProductActionProps = HTMLAttributes<HTMLButtonElement>;
+interface ProductActionProps extends HTMLAttributes<HTMLButtonElement> {
+  icon?: keyof typeof import("lucide-react").icons;
+  iconPosition?: "left" | "right";
+}
 
 export const ProductAction = forwardRef<HTMLButtonElement, ProductActionProps>(
-  function ProductAction({ className, ...props }, ref) {
+  function ProductAction(
+    { icon, iconPosition = "right", className, children, ...props },
+    ref
+  ) {
     return (
       <button
         ref={ref}
         className={clsx(
-          "bg-primary text-primary-foreground hover:bg-primary/90 active:bg-primary/80 mt-2 w-full rounded-md px-3 py-2 text-sm font-medium transition-colors",
+          "bg-primary text-primary-foreground hover:bg-primary/90 active:bg-primary/80 mt-2 flex w-full items-center justify-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors",
           className
         )}
         {...props}
-      />
+      >
+        {icon && iconPosition === "left" && <Icon name={icon} size="sm" />}
+        {children}
+        {icon && iconPosition === "right" && <Icon name={icon} size="sm" />}
+      </button>
     );
   }
 );

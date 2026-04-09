@@ -21,6 +21,7 @@ import { Grid, GridItem } from "@components/layouts/grid";
 import {
   ProductCard,
   ProductImage,
+  ProductIcon,
   ProductContent,
   ProductTitle,
   ProductPrice,
@@ -344,11 +345,7 @@ export default function Home() {
                     <ProductCard>
                       <ProductImage className="from-primary/20 to-accent/20 relative flex items-center justify-center bg-gradient-to-br">
                         {i === 1 && <ProductBadge>-20%</ProductBadge>}
-                        <Icon
-                          name="Package"
-                          className="text-muted-foreground"
-                          size="lg"
-                        />
+                        <ProductIcon name="Package" size="lg" />
                       </ProductImage>
                       <ProductContent>
                         <ProductTitle>Product {i + 1}</ProductTitle>
@@ -357,7 +354,7 @@ export default function Home() {
                           current={29.99 + i * 10}
                           original={i === 1 ? 39.99 + i * 10 : undefined}
                         />
-                        <ProductAction>Add to Cart</ProductAction>
+                        <ProductAction icon="ShoppingCart">Add to Cart</ProductAction>
                       </ProductContent>
                     </ProductCard>
                   </GridItem>
@@ -373,17 +370,15 @@ export default function Home() {
                     <ProductCard>
                       <ProductImage className="from-primary/20 to-accent/20 relative flex h-64 items-center justify-center bg-gradient-to-br">
                         {i === 0 && <ProductBadge>New</ProductBadge>}
-                        <Icon
-                          name="ShoppingBag"
-                          className="text-muted-foreground"
-                          size="lg"
-                        />
+                        <ProductIcon name="ShoppingBag" size="lg" />
                       </ProductImage>
                       <ProductContent>
                         <ProductTitle>Premium Product {i + 1}</ProductTitle>
                         <ProductRating rating={5} reviews={250 + i * 50} />
                         <ProductPrice current={99.99 + i * 50} />
-                        <ProductAction>View Details</ProductAction>
+                        <ProductAction icon="ArrowRight" iconPosition="right">
+                          View Details
+                        </ProductAction>
                       </ProductContent>
                     </ProductCard>
                   </GridItem>
@@ -398,7 +393,7 @@ export default function Home() {
                   <GridItem key={i}>
                     <ProductCard>
                       <ProductImage className="from-primary/20 to-accent/20 relative flex h-32 items-center justify-center bg-gradient-to-br">
-                        <Icon name="Package" size="base" />
+                        <ProductIcon name="Package" size="base" />
                       </ProductImage>
                       <ProductContent className="gap-2 p-3">
                         <ProductTitle className="text-xs">Item {i + 1}</ProductTitle>
