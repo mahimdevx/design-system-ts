@@ -32,6 +32,7 @@ You are a **Code Quality Specialist** for the `design-system-ts` Next.js design 
 ## Output Format
 
 Provide a clear summary:
+
 - **Files Modified**: List each file changed
 - **Issues Fixed**: Describe the types of issues (formatting, linting, types)
 - **Status**: Report if project builds successfully

@@ -308,7 +308,8 @@ export default function Home() {
                   <AccordionTrigger>Animation</AccordionTrigger>
                   <AccordionContent>
                     <Text type="small" className="text-muted-foreground">
-                      Uses `animate-accordion-up` / `animate-accordion-down` based on state.
+                      Uses `animate-accordion-up` / `animate-accordion-down` based on
+                      state.
                     </Text>
                   </AccordionContent>
                 </AccordionItem>
