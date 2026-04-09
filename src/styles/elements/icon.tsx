@@ -1,7 +1,7 @@
 import { tv } from "tailwind-variants";
 
 export const iconVariants = tv({
-  base: "text-current",
+  base: "inline-block shrink-0 text-current",
   variants: {
     size: {
       xs: "h-3 w-3",

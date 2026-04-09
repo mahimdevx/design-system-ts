@@ -1,6 +1,6 @@
 "use client";
 
-import { forwardRef, type SVGProps } from "react";
+import { type SVGProps } from "react";
 
 import { icons } from "lucide-react";
 
@@ -8,22 +8,17 @@ import { type VariantProps } from "tailwind-variants";
 
 import { iconVariants } from "@styles/elements/icon";
 
-type IconProps = Omit<SVGProps<SVGSVGElement>, "ref"> &
+type IconProps = SVGProps<SVGSVGElement> &
   VariantProps<typeof iconVariants> & {
     name: keyof typeof icons;
   };
 
-export const Icon = forwardRef<SVGSVGElement, IconProps>(function Icon({
-  name,
-  size,
-  className,
-  ...props
-}) {
-  const Component = icons?.[name];
+export function Icon({ name, size, className, ...props }: IconProps) {
+  const Component = icons?.[name] as React.FC<SVGProps<SVGSVGElement>> | undefined;
 
   const iconClasses = iconVariants({ size, className });
 
   if (!Component) return <span>{name[0]}</span>;
 
   return <Component className={iconClasses} {...props} />;
-});
+}

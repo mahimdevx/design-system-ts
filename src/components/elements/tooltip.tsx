@@ -17,7 +17,7 @@ export function TooltipProvider({ ...props }: TooltipProviderProps) {
       // Global configuration for all tooltips
       delayDuration={300}
       skipDelayDuration={0}
-      disableHoverableContent={true}
+      disableHoverableContent={false}
       {...props}
     />
   );
@@ -43,7 +43,7 @@ type ContentProps = ComponentProps<typeof TooltipPrimitive.Content> &
   VariantProps<typeof tooltipVariants>;
 
 export function TooltipContent({
-  sideOffset = -4,
+  sideOffset = 0,
   variant,
   className,
   children,
@@ -79,15 +79,9 @@ interface TooltipProps {
 export function Tooltip({ children, content, ...props }: TooltipProps) {
   return (
     <TooltipRoot>
-      <TooltipTrigger className="mx-1 inline-flex" asChild>
-        {children}
-      </TooltipTrigger>
+      <TooltipTrigger asChild>{children}</TooltipTrigger>
 
-      <TooltipContent {...props}>
-        {content}
-
-        <TooltipPrimitive.Arrow />
-      </TooltipContent>
+      <TooltipContent {...props}>{content}</TooltipContent>
     </TooltipRoot>
   );
 }

@@ -1,7 +1,7 @@
 import ts from "typescript-eslint";
 import prettier from "eslint-config-prettier/flat";
 
-const eslintConfig = [
+export default [
   {
     ignores: [
       "node_modules/**",
@@ -20,5 +20,3 @@ const eslintConfig = [
   },
   prettier
 ];
-
-export default eslintConfig;
