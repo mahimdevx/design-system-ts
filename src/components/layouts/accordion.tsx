@@ -37,8 +37,6 @@ export const AccordionItem = forwardRef<HTMLDivElement, AccordionItemProps>(
   }
 );
 
-AccordionItem.displayName = AccordionPrimitive.Item.displayName;
-
 /*
  * Accordion Trigger Component
  *
@@ -69,8 +67,6 @@ export const AccordionTrigger = forwardRef<HTMLButtonElement, AccordionTriggerPr
   }
 );
 
-AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName;
-
 /*
  * Accordion Content Component
  *
@@ -95,5 +91,3 @@ export const AccordionContent = forwardRef<HTMLDivElement, AccordionContentProps
     );
   }
 );
-
-AccordionContent.displayName = AccordionPrimitive.Content.displayName;

@@ -18,6 +18,16 @@ import {
 import { Typography } from "@components/elements/typography";
 import { Section } from "@components/elements/section";
 import { Grid, GridItem } from "@components/layouts/grid";
+import {
+  ProductCard,
+  ProductImage,
+  ProductContent,
+  ProductTitle,
+  ProductPrice,
+  ProductRating,
+  ProductAction,
+  ProductBadge
+} from "@components/elements/product-card";
 
 const TYPOGRAPHY_TYPES = ["h1", "h2", "h3", "h4", "h5", "h6", "p", "small"] as const;
 
@@ -322,69 +332,79 @@ export default function Home() {
       </Section>
 
       <Section className="flex flex-col gap-6" id="grid">
-        <Typography type="h4">Grid</Typography>
+        <Typography type="h4">Grid with Product Cards</Typography>
 
         <div className="border-border bg-background rounded-lg border p-6">
           <div className="flex flex-col gap-10">
             <div className="flex flex-col gap-4">
-              <Typography type="h6">3 Columns (Default)</Typography>
-              <Grid cols={3} gap={4}>
-                {Array.from({ length: 9 }).map((_, i) => (
-                  <GridItem
-                    key={i}
-                    className="bg-muted flex min-h-[120px] items-center justify-center rounded-lg p-6"
-                  >
-                    <Text type="small" className="text-muted-foreground">
-                      Item {i + 1}
-                    </Text>
+              <Typography type="h6">3 Columns Product Grid</Typography>
+              <Grid className="grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {Array.from({ length: 6 }).map((_, i) => (
+                  <GridItem key={i}>
+                    <ProductCard>
+                      <ProductImage className="from-primary/20 to-accent/20 relative flex items-center justify-center bg-gradient-to-br">
+                        {i === 1 && <ProductBadge>-20%</ProductBadge>}
+                        <Icon
+                          name="Package"
+                          className="text-muted-foreground"
+                          size="lg"
+                        />
+                      </ProductImage>
+                      <ProductContent>
+                        <ProductTitle>Product {i + 1}</ProductTitle>
+                        <ProductRating rating={4 + (i % 2)} reviews={120 + i * 20} />
+                        <ProductPrice
+                          current={29.99 + i * 10}
+                          original={i === 1 ? 39.99 + i * 10 : undefined}
+                        />
+                        <ProductAction>Add to Cart</ProductAction>
+                      </ProductContent>
+                    </ProductCard>
                   </GridItem>
                 ))}
               </Grid>
             </div>
 
             <div className="flex flex-col gap-4">
-              <Typography type="h6">2 Columns</Typography>
-              <Grid cols={2} gap={4}>
+              <Typography type="h6">2 Columns Large Cards</Typography>
+              <Grid className="grid-cols-1 gap-4 sm:grid-cols-2">
                 {Array.from({ length: 4 }).map((_, i) => (
-                  <GridItem
-                    key={i}
-                    className="bg-muted flex min-h-[120px] items-center justify-center rounded-lg p-6"
-                  >
-                    <Text type="small" className="text-muted-foreground">
-                      Item {i + 1}
-                    </Text>
+                  <GridItem key={i}>
+                    <ProductCard>
+                      <ProductImage className="from-primary/20 to-accent/20 relative flex h-64 items-center justify-center bg-gradient-to-br">
+                        {i === 0 && <ProductBadge>New</ProductBadge>}
+                        <Icon
+                          name="ShoppingBag"
+                          className="text-muted-foreground"
+                          size="lg"
+                        />
+                      </ProductImage>
+                      <ProductContent>
+                        <ProductTitle>Premium Product {i + 1}</ProductTitle>
+                        <ProductRating rating={5} reviews={250 + i * 50} />
+                        <ProductPrice current={99.99 + i * 50} />
+                        <ProductAction>View Details</ProductAction>
+                      </ProductContent>
+                    </ProductCard>
                   </GridItem>
                 ))}
               </Grid>
             </div>
 
             <div className="flex flex-col gap-4">
-              <Typography type="h6">4 Columns with Larger Gap</Typography>
-              <Grid cols={4} gap={6}>
+              <Typography type="h6">4 Columns Compact Grid</Typography>
+              <Grid className="grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 {Array.from({ length: 8 }).map((_, i) => (
-                  <GridItem
-                    key={i}
-                    className="bg-muted flex min-h-[100px] items-center justify-center rounded-lg p-4"
-                  >
-                    <Text type="small" className="text-muted-foreground">
-                      {i + 1}
-                    </Text>
-                  </GridItem>
-                ))}
-              </Grid>
-            </div>
-
-            <div className="flex flex-col gap-4">
-              <Typography type="h6">Responsive (1 to 6 Columns)</Typography>
-              <Grid cols={6} gap={3}>
-                {Array.from({ length: 12 }).map((_, i) => (
-                  <GridItem
-                    key={i}
-                    className="bg-muted flex min-h-[80px] items-center justify-center rounded-lg p-3"
-                  >
-                    <Text type="small" className="text-muted-foreground">
-                      {i + 1}
-                    </Text>
+                  <GridItem key={i}>
+                    <ProductCard>
+                      <ProductImage className="from-primary/20 to-accent/20 relative flex h-32 items-center justify-center bg-gradient-to-br">
+                        <Icon name="Package" size="base" />
+                      </ProductImage>
+                      <ProductContent className="gap-2 p-3">
+                        <ProductTitle className="text-xs">Item {i + 1}</ProductTitle>
+                        <ProductPrice current={19.99 + i * 5} />
+                      </ProductContent>
+                    </ProductCard>
                   </GridItem>
                 ))}
               </Grid>
