@@ -4,7 +4,6 @@ import { useState } from "react";
 
 import Navbar from "@components/layouts/navbar";
 import Footer from "@components/layouts/footer";
-import ThemeToggle from "@components/layouts/theme-toggle";
 import {
   Accordion,
   AccordionContent,
@@ -24,27 +23,56 @@ import {
   ProductCard,
   ProductImage,
   ProductIcon,
-  ProductContent,
-  ProductTitle,
+  ProductBadge,
   ProductPrice,
   ProductRating,
-  ProductAction,
-  ProductBadge
+  ProductAction
 } from "@components/layouts/product-card";
 
-export default function ProductPage() {
-  const [selectedColor, setSelectedColor] = useState("black");
-  const [selectedSize, setSelectedSize] = useState("M");
+export default function AdidasPage() {
+  const [selectedColor, setSelectedColor] = useState("white");
+  const [selectedSize, setSelectedSize] = useState("10");
   const [quantity, setQuantity] = useState(1);
 
-  const colors = ["black", "white", "blue", "red"];
-  const sizes = ["XS", "S", "M", "L", "XL", "2XL"];
+  const colors = ["white", "black", "red", "blue"];
+  const sizes = ["5", "6", "7", "8", "9", "10", "11", "12", "13"];
   const features = [
-    "Premium quality fabric",
-    "Machine washable",
-    "UV protection technology",
-    "Moisture-wicking material",
-    "Available in 6 sizes"
+    "Lightweight Boost cushioning technology",
+    "Responsive and energetic feel",
+    "Durable mesh upper with synthetic overlays",
+    "Signature three stripes design",
+    "Perfect for running and casual wear"
+  ];
+
+  const relatedProducts = [
+    {
+      name: "Adidas Ultraboost 21",
+      price: 179.99,
+      original: 219.99,
+      rating: 4.8,
+      reviews: 512
+    },
+    {
+      name: "Adidas NMD R1",
+      price: 129.99,
+      original: 159.99,
+      rating: 4.6,
+      reviews: 389
+    },
+    {
+      name: "Adidas Superstar",
+      price: 99.99,
+      original: 129.99,
+      rating: 4.7,
+      reviews: 621
+    },
+    {
+      name: "Adidas ZX 500",
+      price: 89.99,
+      original: 119.99,
+      rating: 4.5,
+      reviews: 276
+    }
   ];
 
   return (
@@ -52,15 +80,22 @@ export default function ProductPage() {
       {/* Navbar */}
       <Navbar />
 
-      <Section>
+      {/* Hero Section */}
+      <Section className="from-primary/10 to-background bg-gradient-to-b">
         <Container>
-          <Box className="mb-6 flex items-center justify-between">
-            <Typography type="h1">Premium Wireless Headphones</Typography>
-            <ThemeToggle />
+          <Box className="py-8">
+            <Box className="mb-6 flex flex-col gap-2">
+              <Typography type="h1">Adidas Ultraboost 22</Typography>
+              <Text type="small" className="text-muted-foreground max-w-md">
+                Experience ultimate comfort and performance with the latest Adidas
+                technology
+              </Text>
+            </Box>
           </Box>
         </Container>
       </Section>
 
+      {/* Product Details Section */}
       <Section>
         <Container>
           <Grid className="grid-cols-1 gap-8 lg:grid-cols-2">
@@ -69,9 +104,9 @@ export default function ProductPage() {
               <Box className="border-border bg-muted relative overflow-hidden rounded-lg border p-6">
                 <div className="relative flex h-96 items-center justify-center">
                   <ProductBadge className="absolute top-4 right-4">
-                    Limited Stock
+                    New Arrival
                   </ProductBadge>
-                  <ProductIcon name="Headphones" size="lg" />
+                  <ProductIcon name="Shoe" size="lg" />
                 </div>
               </Box>
 
@@ -95,17 +130,18 @@ export default function ProductPage() {
               {/* Rating & Price */}
               <Box className="flex flex-col gap-4">
                 <Box className="flex items-center justify-between">
-                  <ProductRating rating={4.5} reviews={238} />
+                  <ProductRating rating={4.8} reviews={1203} />
                   <Button variant="outline" iconOnly rounded aria-label="Add to wishlist">
                     <Icon name="Heart" />
                   </Button>
                 </Box>
 
-                <ProductPrice current={149.99} original={199.99} />
+                <ProductPrice current={179.99} original={229.99} />
 
                 <Text type="small" className="text-muted-foreground">
-                  High-quality wireless headphones with active noise cancellation and
-                  30-hour battery life. Perfect for travel, work, and everyday use.
+                  Premium running shoes with advanced Boost cushioning technology. Perfect
+                  for athletes and casual wearers. Lightweight, responsive, and incredibly
+                  comfortable for all-day wear.
                 </Text>
               </Box>
 
@@ -129,8 +165,8 @@ export default function ProductPage() {
                             : color === "white"
                               ? "#fff"
                               : color === "blue"
-                                ? "#3b82f6"
-                                : "#ef4444"
+                                ? "#1e40af"
+                                : "#dc2626"
                       }}
                       aria-label={`Select ${color} color`}
                     />
@@ -140,8 +176,8 @@ export default function ProductPage() {
 
               {/* Size Selection */}
               <Box className="flex flex-col gap-3">
-                <Typography type="h6">Size</Typography>
-                <Box className="grid grid-cols-3 gap-2">
+                <Typography type="h6">Size (US)</Typography>
+                <Box className="grid grid-cols-4 gap-2">
                   {sizes.map((size) => (
                     <Button
                       key={size}
@@ -191,15 +227,15 @@ export default function ProductPage() {
                 </Button>
               </Box>
 
-              {/* Info */}
+              {/* Info Box */}
               <Box className="border-border bg-muted flex gap-3 rounded-lg border p-4">
                 <Icon name="Truck" className="text-primary mt-1 flex-shrink-0" />
                 <Box className="flex flex-col gap-1">
                   <Text type="small" className="font-medium">
-                    Free shipping on orders over $50
+                    Free shipping on orders over $100
                   </Text>
                   <Text type="small" className="text-muted-foreground">
-                    30-day money back guarantee
+                    60-day return policy & authentic guarantee
                   </Text>
                 </Box>
               </Box>
@@ -224,7 +260,7 @@ export default function ProductPage() {
               <ul className="space-y-3">
                 {features.map((feature, i) => (
                   <li key={i} className="flex gap-3">
-                    <Icon name="Check" className="mt-0.5 flex-shrink-0 text-green-500" />
+                    <Icon name="Check" className="text-primary mt-0.5 flex-shrink-0" />
                     <Text type="small">{feature}</Text>
                   </li>
                 ))}
@@ -240,34 +276,34 @@ export default function ProductPage() {
                     <Box className="space-y-2">
                       <Box className="flex justify-between">
                         <Text type="small" className="font-medium">
-                          Battery Life:
+                          Weight:
                         </Text>
                         <Text type="small" className="text-muted-foreground">
-                          30 hours
+                          310g (size 10)
                         </Text>
                       </Box>
                       <Box className="flex justify-between">
                         <Text type="small" className="font-medium">
-                          Charging Time:
+                          Material:
                         </Text>
                         <Text type="small" className="text-muted-foreground">
-                          2 hours
+                          Primeknit + Synthetic
                         </Text>
                       </Box>
                       <Box className="flex justify-between">
                         <Text type="small" className="font-medium">
-                          Driver Size:
+                          Cushioning:
                         </Text>
                         <Text type="small" className="text-muted-foreground">
-                          40mm
+                          Boost Technology
                         </Text>
                       </Box>
                       <Box className="flex justify-between">
                         <Text type="small" className="font-medium">
-                          Connectivity:
+                          Origin:
                         </Text>
                         <Text type="small" className="text-muted-foreground">
-                          Bluetooth 5.0
+                          Made in Vietnam
                         </Text>
                       </Box>
                     </Box>
@@ -275,22 +311,24 @@ export default function ProductPage() {
                 </AccordionItem>
 
                 <AccordionItem value="warranty">
-                  <AccordionTrigger>Warranty & Support</AccordionTrigger>
+                  <AccordionTrigger>Warranty & Authenticity</AccordionTrigger>
                   <AccordionContent>
                     <Text type="small" className="text-muted-foreground">
-                      2-year manufacturer warranty covering defects in materials and
-                      workmanship. Free technical support and customer service available
-                      24/7.
+                      100% authentic Adidas products. 1-year manufacturer warranty
+                      covering defects. Free shoe cleaning kit with every purchase. All
+                      products verified by Adidas quality control.
                     </Text>
                   </AccordionContent>
                 </AccordionItem>
 
-                <AccordionItem value="shipping">
-                  <AccordionTrigger>Shipping & Returns</AccordionTrigger>
+                <AccordionItem value="care">
+                  <AccordionTrigger>Care & Maintenance</AccordionTrigger>
                   <AccordionContent>
                     <Text type="small" className="text-muted-foreground">
-                      Free standard shipping on all orders. Express shipping available.
-                      30-day return policy with free returns. No questions asked.
+                      Hand wash only with cold water. Use soft brush for cleaning. Air dry
+                      away from direct heat or sunlight. Do not use washing machine or
+                      dryer. Apply waterproof spray after first cleaning for extended
+                      protection.
                     </Text>
                   </AccordionContent>
                 </AccordionItem>
@@ -307,32 +345,37 @@ export default function ProductPage() {
             Customer Reviews
           </Typography>
 
-          <div className="space-y-4">
+          <Box className="space-y-4">
             {Array.from({ length: 3 }).map((_, i) => (
-              <Box key={i} className="border-border rounded-lg border p-6">
-                <div className="mb-3 flex items-center justify-between">
-                  <div>
-                    <Text type="small" className="font-medium">
-                      Customer {i + 1}
-                    </Text>
-                    <ProductRating rating={5 - i * 0.5} />
-                  </div>
+              <Box key={i} className="border-border rounded-lg border p-4">
+                <Box className="mb-3 flex items-start justify-between">
+                  <Box>
+                    <Typography type="h6" className="mb-1">
+                      {["Sarah M.", "John D.", "Emma L."][i]}
+                    </Typography>
+                    <ProductRating
+                      rating={[4.8, 4.5, 5][i]}
+                      reviews={
+                        ["Verified Purchase", "Verified Purchase", "Verified Purchase"][i]
+                      }
+                    />
+                  </Box>
                   <Text type="small" className="text-muted-foreground">
-                    2 weeks ago
+                    {["2 weeks ago", "1 month ago", "2 months ago"][i]}
                   </Text>
-                </div>
+                </Box>
                 <Text type="small" className="text-muted-foreground">
                   {
                     [
-                      "Absolutely amazing quality! Best headphones I've ever owned. Highly recommend!",
-                      "Great sound quality and very comfortable. Battery life is impressive.",
-                      "Good value for money. Solid build quality and great features."
+                      "Amazing shoes! The cushioning is incredible and they feel light on my feet. Perfect for running marathons.",
+                      "Great quality and true to size. A bit pricey but worth every penny for long-term durability.",
+                      "Best purchase I've made all year! Comfortable for all-day wear and looks great too."
                     ][i]
                   }
                 </Text>
               </Box>
             ))}
-          </div>
+          </Box>
         </Container>
       </Section>
 
@@ -343,24 +386,31 @@ export default function ProductPage() {
             Related Products
           </Typography>
 
-          <Grid className="grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {Array.from({ length: 4 }).map((_, i) => (
-              <GridItem key={i}>
-                <ProductCard>
-                  <ProductImage className="from-primary/20 to-accent/20 relative flex items-center justify-center bg-gradient-to-br">
-                    {i === 0 && <ProductBadge>New</ProductBadge>}
-                    <ProductIcon name="Headphones" size="lg" />
-                  </ProductImage>
-                  <ProductContent>
-                    <ProductTitle>Related Product {i + 1}</ProductTitle>
-                    <ProductRating rating={4 + (i % 2) * 0.5} reviews={120 + i * 30} />
-                    <ProductPrice current={99.99 + i * 20} />
-                    <ProductAction icon="Eye" iconPosition="left">
-                      View
-                    </ProductAction>
-                  </ProductContent>
-                </ProductCard>
-              </GridItem>
+          <Grid className="grid-cols-4">
+            {relatedProducts.map((product, i) => (
+              <ProductCard key={i}>
+                <ProductImage>
+                  <Box className="flex h-full items-center justify-center">
+                    <ProductIcon name="Shoe" size="lg" />
+                  </Box>
+                </ProductImage>
+                <Box className="p-4">
+                  <ProductCard>
+                    <Typography
+                      type="h6"
+                      className="mb-2 line-clamp-2 text-sm font-semibold"
+                    >
+                      {product.name}
+                    </Typography>
+                  </ProductCard>
+                  <ProductPrice current={product.price} original={product.original} />
+                  <ProductRating rating={product.rating} reviews={product.reviews} />
+                  <ProductAction>
+                    <Icon name="ShoppingCart" size="sm" />
+                    Quick Add
+                  </ProductAction>
+                </Box>
+              </ProductCard>
             ))}
           </Grid>
         </Container>
