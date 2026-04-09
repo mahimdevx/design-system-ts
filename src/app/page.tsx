@@ -16,6 +16,8 @@ import {
   TooltipTrigger
 } from "@components/layouts/tooltip";
 import { Typography } from "@components/elements/typography";
+import { Section } from "@components/elements/section";
+import { Grid, GridItem } from "@components/layouts/grid";
 
 const TYPOGRAPHY_TYPES = ["h1", "h2", "h3", "h4", "h5", "h6", "p", "small"] as const;
 
@@ -55,7 +57,7 @@ export default function Home() {
         <ThemeToggle />
       </header>
 
-      <section className="flex flex-col gap-6">
+      <Section className="flex flex-col gap-6">
         <Typography type="h4">Typography</Typography>
 
         <div className="border-border bg-background rounded-lg border p-6">
@@ -72,9 +74,9 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </Section>
 
-      <section className="flex flex-col gap-6" id="buttons">
+      <Section className="flex flex-col gap-6" id="buttons">
         <Typography type="h4">Buttons</Typography>
 
         <div className="border-border bg-background rounded-lg border p-6">
@@ -159,9 +161,9 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </Section>
 
-      <section className="flex flex-col gap-6">
+      <Section className="flex flex-col gap-6">
         <Typography type="h4">Icons</Typography>
 
         <div className="border-border bg-background rounded-lg border p-6">
@@ -181,9 +183,9 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </Section>
 
-      <section className="flex flex-col gap-6" id="tooltips">
+      <Section className="flex flex-col gap-6" id="tooltips">
         <Typography type="h4">Tooltips</Typography>
 
         <div className="border-border bg-background rounded-lg border p-6">
@@ -234,9 +236,9 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </Section>
 
-      <section className="flex flex-col gap-6" id="accordion">
+      <Section className="flex flex-col gap-6" id="accordion">
         <Typography type="h4">Accordion</Typography>
 
         <div className="border-border bg-background rounded-lg border p-6">
@@ -317,7 +319,79 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </Section>
+
+      <Section className="flex flex-col gap-6" id="grid">
+        <Typography type="h4">Grid</Typography>
+
+        <div className="border-border bg-background rounded-lg border p-6">
+          <div className="flex flex-col gap-10">
+            <div className="flex flex-col gap-4">
+              <Typography type="h6">3 Columns (Default)</Typography>
+              <Grid cols={3} gap={4}>
+                {Array.from({ length: 9 }).map((_, i) => (
+                  <GridItem
+                    key={i}
+                    className="bg-muted flex min-h-[120px] items-center justify-center rounded-lg p-6"
+                  >
+                    <Text type="small" className="text-muted-foreground">
+                      Item {i + 1}
+                    </Text>
+                  </GridItem>
+                ))}
+              </Grid>
+            </div>
+
+            <div className="flex flex-col gap-4">
+              <Typography type="h6">2 Columns</Typography>
+              <Grid cols={2} gap={4}>
+                {Array.from({ length: 4 }).map((_, i) => (
+                  <GridItem
+                    key={i}
+                    className="bg-muted flex min-h-[120px] items-center justify-center rounded-lg p-6"
+                  >
+                    <Text type="small" className="text-muted-foreground">
+                      Item {i + 1}
+                    </Text>
+                  </GridItem>
+                ))}
+              </Grid>
+            </div>
+
+            <div className="flex flex-col gap-4">
+              <Typography type="h6">4 Columns with Larger Gap</Typography>
+              <Grid cols={4} gap={6}>
+                {Array.from({ length: 8 }).map((_, i) => (
+                  <GridItem
+                    key={i}
+                    className="bg-muted flex min-h-[100px] items-center justify-center rounded-lg p-4"
+                  >
+                    <Text type="small" className="text-muted-foreground">
+                      {i + 1}
+                    </Text>
+                  </GridItem>
+                ))}
+              </Grid>
+            </div>
+
+            <div className="flex flex-col gap-4">
+              <Typography type="h6">Responsive (1 to 6 Columns)</Typography>
+              <Grid cols={6} gap={3}>
+                {Array.from({ length: 12 }).map((_, i) => (
+                  <GridItem
+                    key={i}
+                    className="bg-muted flex min-h-[80px] items-center justify-center rounded-lg p-3"
+                  >
+                    <Text type="small" className="text-muted-foreground">
+                      {i + 1}
+                    </Text>
+                  </GridItem>
+                ))}
+              </Grid>
+            </div>
+          </div>
+        </div>
+      </Section>
     </main>
   );
 }
