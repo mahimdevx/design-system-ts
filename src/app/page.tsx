@@ -1,5 +1,11 @@
 import ThemeToggle from "@components/layouts/theme-toggle";
 
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger
+} from "@components/layouts/accordion";
 import { Button } from "@components/elements/button";
 import { Icon } from "@components/elements/icon";
 import { Text } from "@components/elements/text";
@@ -8,7 +14,7 @@ import {
   TooltipContent,
   TooltipRoot,
   TooltipTrigger
-} from "@components/elements/tooltip";
+} from "@components/layouts/tooltip";
 import { Typography } from "@components/elements/typography";
 
 const TYPOGRAPHY_TYPES = ["h1", "h2", "h3", "h4", "h5", "h6", "p", "small"] as const;
@@ -225,6 +231,88 @@ export default function Home() {
                   </TooltipRoot>
                 ))}
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="flex flex-col gap-6" id="accordion">
+        <Typography type="h4">Accordion</Typography>
+
+        <div className="border-border bg-background rounded-lg border p-6">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
+            <div className="flex flex-col gap-4">
+              <Typography type="h6">Single</Typography>
+              <Accordion type="single" collapsible defaultValue="single-1">
+                <AccordionItem value="single-1">
+                  <AccordionTrigger>What is this?</AccordionTrigger>
+                  <AccordionContent>
+                    <Text type="small" className="text-muted-foreground">
+                      A simple single accordion (collapsible) using Radix under the hood.
+                    </Text>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="single-2">
+                  <AccordionTrigger>Keyboard support?</AccordionTrigger>
+                  <AccordionContent>
+                    <Text type="small" className="text-muted-foreground">
+                      Radix handles accessibility and keyboard navigation by default.
+                    </Text>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="single-3" disabled>
+                  <AccordionTrigger>Disabled item</AccordionTrigger>
+                  <AccordionContent>
+                    <Text type="small" className="text-muted-foreground">
+                      You should not be able to open this item.
+                    </Text>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </div>
+
+            <div className="flex flex-col gap-4">
+              <Typography type="h6">Multiple</Typography>
+              <Accordion type="multiple" defaultValue={["multi-1"]}>
+                <AccordionItem value="multi-1">
+                  <AccordionTrigger>Multiple open</AccordionTrigger>
+                  <AccordionContent>
+                    <Text type="small" className="text-muted-foreground">
+                      In multiple mode, more than one item can be open at once.
+                    </Text>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="multi-2">
+                  <AccordionTrigger>Works with other components</AccordionTrigger>
+                  <AccordionContent>
+                    <div className="flex flex-wrap items-center gap-3">
+                      <Button size="sm" variant="secondary">
+                        Action
+                      </Button>
+                      <Button size="sm" variant="outline" iconOnly aria-label="Star">
+                        <Icon name="Star" />
+                      </Button>
+                      <Tooltip content="Tooltip inside accordion">
+                        <Button size="sm" variant="link">
+                          Hover
+                        </Button>
+                      </Tooltip>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="multi-3">
+                  <AccordionTrigger>Animation</AccordionTrigger>
+                  <AccordionContent>
+                    <Text type="small" className="text-muted-foreground">
+                      Uses `animate-accordion-up` / `animate-accordion-down` based on state.
+                    </Text>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
             </div>
           </div>
         </div>

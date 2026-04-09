@@ -11,7 +11,7 @@ export const accordionVariants = tv({
     iconVariants: [
       "shrink-0 group-data-[state=open]:-rotate-180",
       "transition-transform duration-300",
-      "ease-[cubic-bezier(0.87,_0,_0.13,_1)]"
+      "ease-[cubic-bezier(0.16,_1,_0.3,_1)]"
     ],
     contentVariants: [
       "overflow-hidden",
