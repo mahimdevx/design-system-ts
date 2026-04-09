@@ -27,7 +27,7 @@ import {
   ProductRating,
   ProductAction,
   ProductBadge
-} from "@components/elements/product-card";
+} from "@components/layouts/product-card";
 
 const TYPOGRAPHY_TYPES = ["h1", "h2", "h3", "h4", "h5", "h6", "p", "small"] as const;
 

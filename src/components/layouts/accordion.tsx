@@ -1,21 +1,33 @@
 "use client";
 
-import { forwardRef, ComponentPropsWithoutRef, ReactNode } from "react";
+import { ComponentProps, ReactNode } from "react";
 
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
 
 import clsx from "clsx";
 
-import { Icon } from "@components/elements/icon";
-
 import { accordionVariants } from "@styles/elements/accordion";
+
+import { Icon } from "@components/elements/icon";
 
 // Destructure variant slots
 const { itemVariants, triggerVariants, iconVariants, contentVariants } =
   accordionVariants();
 
+type AccordionProps = ComponentProps<typeof AccordionPrimitive.Root> & {
+  children: ReactNode;
+};
+
 // Expose the root Accordion component (Radix handles the logic internally)
-export const Accordion = AccordionPrimitive.Root;
+export function Accordion({ className, ...props }: AccordionProps) {
+  return (
+    <AccordionPrimitive.Root
+      data-slot="accordion"
+      className={clsx("flex w-full flex-col", className)}
+      {...props}
+    />
+  );
+}
 
 /*
  * Accordion Item Component
@@ -25,17 +37,21 @@ export const Accordion = AccordionPrimitive.Root;
  * which is required for integration with animations, focus control, etc.
  */
 
-type AccordionItemProps = ComponentPropsWithoutRef<typeof AccordionPrimitive.Item> & {
+type AccordionItemProps = ComponentProps<typeof AccordionPrimitive.Item> & {
   children: ReactNode;
 };
 
-export const AccordionItem = forwardRef<HTMLDivElement, AccordionItemProps>(
-  ({ className, ...props }, ref) => {
-    const itemClasses = itemVariants({ className });
+export function AccordionItem({ className, ...props }: AccordionItemProps) {
+  const itemClasses = itemVariants({ className });
 
-    return <AccordionPrimitive.Item ref={ref} className={itemClasses} {...props} />;
-  }
-);
+  return (
+    <AccordionPrimitive.Item
+      data-slot="accordion-item"
+      className={itemClasses}
+      {...props}
+    />
+  );
+}
 
 /*
  * Accordion Trigger Component
@@ -44,28 +60,36 @@ export const AccordionItem = forwardRef<HTMLDivElement, AccordionItemProps>(
  * Includes the Chevron icon which rotates based on open/closed state.
  */
 
-type AccordionTriggerProps = ComponentPropsWithoutRef<
-  typeof AccordionPrimitive.Trigger
-> & {
+type AccordionTriggerProps = ComponentProps<typeof AccordionPrimitive.Trigger> & {
   children: ReactNode;
 };
 
-export const AccordionTrigger = forwardRef<HTMLButtonElement, AccordionTriggerProps>(
-  ({ className, children, ...props }, ref) => {
-    const triggerClasses = triggerVariants({ className });
-    const iconClasses = iconVariants();
+export function AccordionTrigger({
+  className,
+  children,
+  ...props
+}: AccordionTriggerProps) {
+  const triggerClasses = triggerVariants({ className });
+  const iconClasses = iconVariants();
 
-    return (
-      <AccordionPrimitive.Header>
-        <AccordionPrimitive.Trigger ref={ref} className={triggerClasses} {...props}>
-          {children}
+  return (
+    <AccordionPrimitive.Header>
+      <AccordionPrimitive.Trigger
+        data-slot="accordion-trigger"
+        className={triggerClasses}
+        {...props}
+      >
+        {children}
 
-          <Icon name="ChevronDown" className={iconClasses} />
-        </AccordionPrimitive.Trigger>
-      </AccordionPrimitive.Header>
-    );
-  }
-);
+        <Icon
+          name="ChevronDown"
+          data-slot="accordion-trigger-icon"
+          className={iconClasses}
+        />
+      </AccordionPrimitive.Trigger>
+    </AccordionPrimitive.Header>
+  );
+}
 
 /*
  * Accordion Content Component
@@ -74,20 +98,24 @@ export const AccordionTrigger = forwardRef<HTMLButtonElement, AccordionTriggerPr
  * We apply custom animations for open/close using Tailwind + Radix data attributes.
  */
 
-type AccordionContentProps = ComponentPropsWithoutRef<
-  typeof AccordionPrimitive.Content
-> & {
+type AccordionContentProps = ComponentProps<typeof AccordionPrimitive.Content> & {
   children: ReactNode;
 };
 
-export const AccordionContent = forwardRef<HTMLDivElement, AccordionContentProps>(
-  ({ className, children, ...props }, ref) => {
-    const contentClasses = contentVariants();
+export function AccordionContent({
+  className,
+  children,
+  ...props
+}: AccordionContentProps) {
+  const contentClasses = contentVariants();
 
-    return (
-      <AccordionPrimitive.Content ref={ref} className={contentClasses} {...props}>
-        <div className={clsx("pt-0 pb-5", className)}>{children}</div>
-      </AccordionPrimitive.Content>
-    );
-  }
-);
+  return (
+    <AccordionPrimitive.Content
+      data-slot="accordion-content"
+      className={contentClasses}
+      {...props}
+    >
+      <div className={clsx("pt-0 pb-5", className)}>{children}</div>
+    </AccordionPrimitive.Content>
+  );
+}
