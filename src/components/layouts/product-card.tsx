@@ -1,6 +1,7 @@
 "use client";
 
 import { forwardRef, HTMLAttributes, ReactNode } from "react";
+import Image from "next/image";
 
 import clsx from "clsx";
 
@@ -16,7 +17,7 @@ export const ProductCard = forwardRef<HTMLDivElement, ProductCardProps>(
       <Box
         ref={ref}
         className={clsx(
-          "group border-border bg-background relative overflow-hidden rounded-lg border shadow transition-all hover:shadow-lg",
+          "group border-border bg-background relative overflow-hidden border shadow transition-all hover:shadow-lg",
           className
         )}
         {...props}
@@ -25,16 +26,32 @@ export const ProductCard = forwardRef<HTMLDivElement, ProductCardProps>(
   }
 );
 
-type ProductImageProps = HTMLAttributes<HTMLDivElement>;
+type ProductImageProps = HTMLAttributes<HTMLDivElement> & {
+  src?: string;
+  alt?: string;
+  children?: ReactNode;
+};
 
 export const ProductImage = forwardRef<HTMLDivElement, ProductImageProps>(
-  function ProductImage({ className, ...props }, ref) {
+  function ProductImage({ src, alt, className, children, ...props }, ref) {
     return (
       <Box
         ref={ref}
         className={clsx("bg-muted relative h-48 w-full overflow-hidden", className)}
         {...props}
-      />
+      >
+        {src ? (
+          <Image
+            src={src}
+            alt={alt || "Product image"}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+        ) : (
+          children
+        )}
+      </Box>
     );
   }
 );

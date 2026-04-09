@@ -54,6 +54,67 @@ const TOOLTIP_VARIANTS = [
   "destructive"
 ] as const;
 
+// Adidas Products Data
+const ADIDAS_PRODUCTS = [
+  {
+    name: "Adidas Ultraboost 22",
+    price: 179.99,
+    original: 229.99,
+    rating: 4.8,
+    reviews: 1203,
+    badge: "-20%",
+    image:
+      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&h=500&fit=crop"
+  },
+  {
+    name: "Adidas NMD R1",
+    price: 129.99,
+    original: 159.99,
+    rating: 4.6,
+    reviews: 891,
+    image:
+      "https://images.unsplash.com/photo-1552820728-8ac41f1ce891?w=500&h=500&fit=crop"
+  },
+  {
+    name: "Adidas Superstar",
+    price: 99.99,
+    original: 129.99,
+    rating: 4.7,
+    reviews: 1521,
+    badge: "Classic",
+    image:
+      "https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=500&h=500&fit=crop"
+  },
+  {
+    name: "Adidas Stan Smith",
+    price: 94.99,
+    original: null,
+    rating: 4.5,
+    reviews: 756,
+    image:
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&h=500&fit=crop"
+  },
+  {
+    name: "Adidas ZX 500",
+    price: 89.99,
+    original: 119.99,
+    rating: 4.4,
+    reviews: 634,
+    image:
+      "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=500&h=500&fit=crop"
+  },
+  {
+    name: "Adidas Gazelle",
+    price: 109.99,
+    original: null,
+    rating: 4.9,
+    reviews: 2143,
+    badge: "New",
+    image:
+      "https://images.unsplash.com/photo-1511556820780-d912e42b4980?w=500&h=500&fit=crop"
+  }
+];
+
 export default function Home() {
   return (
     <main className="mx-auto flex w-full max-w-6xl flex-col gap-14 px-6 py-12">
@@ -338,21 +399,23 @@ export default function Home() {
         <div className="border-border bg-background rounded-lg border p-6">
           <div className="flex flex-col gap-10">
             <div className="flex flex-col gap-4">
-              <Typography type="h6">3 Columns Product Grid</Typography>
+              <Typography type="h6">3 Columns Product Grid - Adidas</Typography>
               <Grid className="grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {Array.from({ length: 6 }).map((_, i) => (
+                {ADIDAS_PRODUCTS.map((product, i) => (
                   <GridItem key={i}>
                     <ProductCard>
-                      <ProductImage className="from-primary/20 to-accent/20 relative flex items-center justify-center bg-linear-to-br">
-                        {i === 1 && <ProductBadge>-20%</ProductBadge>}
-                        <ProductIcon name="Package" size="lg" />
+                      <ProductImage src={product.image} alt={product.name}>
+                        {product.badge && <ProductBadge>{product.badge}</ProductBadge>}
                       </ProductImage>
                       <ProductContent>
-                        <ProductTitle>Product {i + 1}</ProductTitle>
-                        <ProductRating rating={4 + (i % 2)} reviews={120 + i * 20} />
+                        <ProductTitle>{product.name}</ProductTitle>
+                        <ProductRating
+                          rating={product.rating}
+                          reviews={product.reviews}
+                        />
                         <ProductPrice
-                          current={29.99 + i * 10}
-                          original={i === 1 ? 39.99 + i * 10 : undefined}
+                          current={product.price}
+                          original={product.original}
                         />
                         <ProductAction icon="ShoppingCart">Add to Cart</ProductAction>
                       </ProductContent>
@@ -363,19 +426,28 @@ export default function Home() {
             </div>
 
             <div className="flex flex-col gap-4">
-              <Typography type="h6">2 Columns Large Cards</Typography>
+              <Typography type="h6">2 Columns Large Cards - Premium Adidas</Typography>
               <Grid className="grid-cols-1 gap-4 sm:grid-cols-2">
-                {Array.from({ length: 4 }).map((_, i) => (
+                {ADIDAS_PRODUCTS.slice(0, 4).map((product, i) => (
                   <GridItem key={i}>
                     <ProductCard>
-                      <ProductImage className="from-primary/20 to-accent/20 relative flex h-64 items-center justify-center bg-linear-to-br">
-                        {i === 0 && <ProductBadge>New</ProductBadge>}
-                        <ProductIcon name="ShoppingBag" size="lg" />
+                      <ProductImage
+                        src={product.image}
+                        alt={product.name}
+                        className="relative flex h-64 items-center justify-center"
+                      >
+                        {i === 0 && <ProductBadge>Deal</ProductBadge>}
                       </ProductImage>
                       <ProductContent>
-                        <ProductTitle>Premium Product {i + 1}</ProductTitle>
-                        <ProductRating rating={5} reviews={250 + i * 50} />
-                        <ProductPrice current={99.99 + i * 50} />
+                        <ProductTitle>{product.name}</ProductTitle>
+                        <ProductRating
+                          rating={product.rating}
+                          reviews={product.reviews}
+                        />
+                        <ProductPrice
+                          current={product.price}
+                          original={product.original}
+                        />
                         <ProductAction icon="ArrowRight" iconPosition="right">
                           View Details
                         </ProductAction>
@@ -387,17 +459,21 @@ export default function Home() {
             </div>
 
             <div className="flex flex-col gap-4">
-              <Typography type="h6">4 Columns Compact Grid</Typography>
+              <Typography type="h6">
+                4 Columns Compact Grid - Adidas Collection
+              </Typography>
               <Grid className="grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                {Array.from({ length: 8 }).map((_, i) => (
+                {ADIDAS_PRODUCTS.map((product, i) => (
                   <GridItem key={i}>
                     <ProductCard>
-                      <ProductImage className="from-primary/20 to-accent/20 relative flex h-32 items-center justify-center bg-linear-to-br">
-                        <ProductIcon name="Package" size="base" />
-                      </ProductImage>
+                      <ProductImage
+                        src={product.image}
+                        alt={product.name}
+                        className="relative flex h-32 items-center justify-center"
+                      />
                       <ProductContent className="gap-2 p-3">
-                        <ProductTitle className="text-xs">Item {i + 1}</ProductTitle>
-                        <ProductPrice current={19.99 + i * 5} />
+                        <ProductTitle className="text-xs">{product.name}</ProductTitle>
+                        <ProductPrice current={product.price} />
                       </ProductContent>
                     </ProductCard>
                   </GridItem>
