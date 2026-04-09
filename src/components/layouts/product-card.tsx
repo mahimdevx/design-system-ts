@@ -5,13 +5,15 @@ import { forwardRef, HTMLAttributes, ReactNode } from "react";
 import clsx from "clsx";
 
 import { Icon } from "@components/elements/icon";
+import { Box } from "@components/elements/box";
+import { Button } from "@components/elements/button";
 
 type ProductCardProps = HTMLAttributes<HTMLDivElement>;
 
 export const ProductCard = forwardRef<HTMLDivElement, ProductCardProps>(
   function ProductCard({ className, ...props }, ref) {
     return (
-      <div
+      <Box
         ref={ref}
         className={clsx(
           "group border-border bg-background relative overflow-hidden rounded-lg border shadow transition-all hover:shadow-lg",
@@ -23,14 +25,12 @@ export const ProductCard = forwardRef<HTMLDivElement, ProductCardProps>(
   }
 );
 
-ProductCard.displayName = "ProductCard";
-
 type ProductImageProps = HTMLAttributes<HTMLDivElement>;
 
 export const ProductImage = forwardRef<HTMLDivElement, ProductImageProps>(
   function ProductImage({ className, ...props }, ref) {
     return (
-      <div
+      <Box
         ref={ref}
         className={clsx("bg-muted relative h-48 w-full overflow-hidden", className)}
         {...props}
@@ -38,8 +38,6 @@ export const ProductImage = forwardRef<HTMLDivElement, ProductImageProps>(
     );
   }
 );
-
-ProductImage.displayName = "ProductImage";
 
 type ProductIconProps = HTMLAttributes<HTMLDivElement> & {
   name: keyof typeof import("lucide-react").icons;
@@ -49,25 +47,23 @@ type ProductIconProps = HTMLAttributes<HTMLDivElement> & {
 export const ProductIcon = forwardRef<HTMLDivElement, ProductIconProps>(
   function ProductIcon({ name, size = "lg", className, ...props }, ref) {
     return (
-      <div
+      <Box
         ref={ref}
         className={clsx("flex items-center justify-center", className)}
         {...props}
       >
         <Icon name={name} size={size} className="text-muted-foreground" />
-      </div>
+      </Box>
     );
   }
 );
-
-ProductIcon.displayName = "ProductIcon";
 
 type ProductBadgeProps = HTMLAttributes<HTMLDivElement>;
 
 export const ProductBadge = forwardRef<HTMLDivElement, ProductBadgeProps>(
   function ProductBadge({ className, ...props }, ref) {
     return (
-      <div
+      <Box
         ref={ref}
         className={clsx(
           "bg-destructive absolute top-2 right-2 z-10 rounded-full px-3 py-1 text-xs font-medium text-white",
@@ -79,19 +75,15 @@ export const ProductBadge = forwardRef<HTMLDivElement, ProductBadgeProps>(
   }
 );
 
-ProductBadge.displayName = "ProductBadge";
-
 type ProductContentProps = HTMLAttributes<HTMLDivElement>;
 
 export const ProductContent = forwardRef<HTMLDivElement, ProductContentProps>(
   function ProductContent({ className, ...props }, ref) {
     return (
-      <div ref={ref} className={clsx("flex flex-col gap-3 p-4", className)} {...props} />
+      <Box ref={ref} className={clsx("flex flex-col gap-3 p-4", className)} {...props} />
     );
   }
 );
-
-ProductContent.displayName = "ProductContent";
 
 type ProductTitleProps = HTMLAttributes<HTMLHeadingElement>;
 
@@ -107,14 +99,12 @@ export const ProductTitle = forwardRef<HTMLHeadingElement, ProductTitleProps>(
   }
 );
 
-ProductTitle.displayName = "ProductTitle";
-
 type ProductDescriptionProps = HTMLAttributes<HTMLDivElement>;
 
 export const ProductDescription = forwardRef<HTMLDivElement, ProductDescriptionProps>(
   function ProductDescription({ className, ...props }, ref) {
     return (
-      <div
+      <Box
         ref={ref}
         className={clsx("text-muted-foreground text-xs", className)}
         {...props}
@@ -122,8 +112,6 @@ export const ProductDescription = forwardRef<HTMLDivElement, ProductDescriptionP
     );
   }
 );
-
-ProductDescription.displayName = "ProductDescription";
 
 interface ProductPriceProps extends HTMLAttributes<HTMLDivElement> {
   current: number;
@@ -133,19 +121,17 @@ interface ProductPriceProps extends HTMLAttributes<HTMLDivElement> {
 export const ProductPrice = forwardRef<HTMLDivElement, ProductPriceProps>(
   function ProductPrice({ current, original, className, ...props }, ref) {
     return (
-      <div ref={ref} className={clsx("flex items-center gap-2", className)} {...props}>
+      <Box ref={ref} className={clsx("flex items-center gap-2", className)} {...props}>
         <span className="text-foreground text-lg font-bold">${current.toFixed(2)}</span>
         {original && original > current && (
           <span className="text-muted-foreground text-sm line-through">
             ${original.toFixed(2)}
           </span>
         )}
-      </div>
+      </Box>
     );
   }
 );
-
-ProductPrice.displayName = "ProductPrice";
 
 interface ProductRatingProps extends HTMLAttributes<HTMLDivElement> {
   rating: number;
@@ -155,12 +141,12 @@ interface ProductRatingProps extends HTMLAttributes<HTMLDivElement> {
 export const ProductRating = forwardRef<HTMLDivElement, ProductRatingProps>(
   function ProductRating({ rating, reviews, className, ...props }, ref) {
     return (
-      <div
+      <Box
         ref={ref}
         className={clsx("flex items-center gap-2 text-sm", className)}
         {...props}
       >
-        <div className="flex gap-0.5">
+        <Box className="flex gap-0.5">
           {Array.from({ length: 5 }).map((_, i) => (
             <Icon
               key={i}
@@ -172,16 +158,15 @@ export const ProductRating = forwardRef<HTMLDivElement, ProductRatingProps>(
               )}
             />
           ))}
-        </div>
+        </Box>
+
         <span className="text-muted-foreground text-xs">
           {rating} {reviews && `(${reviews})`}
         </span>
-      </div>
+      </Box>
     );
   }
 );
-
-ProductRating.displayName = "ProductRating";
 
 interface ProductActionProps extends HTMLAttributes<HTMLButtonElement> {
   icon?: keyof typeof import("lucide-react").icons;
@@ -194,20 +179,11 @@ export const ProductAction = forwardRef<HTMLButtonElement, ProductActionProps>(
     ref
   ) {
     return (
-      <button
-        ref={ref}
-        className={clsx(
-          "bg-primary text-primary-foreground hover:bg-primary/90 active:bg-primary/80 mt-2 flex w-full items-center justify-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors",
-          className
-        )}
-        {...props}
-      >
+      <Button ref={ref} className={clsx("mt-2 w-full", className)} {...props}>
         {icon && iconPosition === "left" && <Icon name={icon} size="sm" />}
         {children}
         {icon && iconPosition === "right" && <Icon name={icon} size="sm" />}
-      </button>
+      </Button>
     );
   }
 );
-
-ProductAction.displayName = "ProductAction";

@@ -49,10 +49,10 @@ export default function ProductPage() {
     <Main>
       <Section>
         <Container>
-          <div className="mb-6 flex items-center justify-between">
+          <Box className="mb-6 flex items-center justify-between">
             <Typography type="h1">Premium Wireless Headphones</Typography>
             <ThemeToggle />
-          </div>
+          </Box>
         </Container>
       </Section>
 
@@ -60,7 +60,7 @@ export default function ProductPage() {
         <Container>
           <Grid className="grid-cols-1 gap-8 lg:grid-cols-2">
             {/* Product Images */}
-            <div className="flex flex-col gap-4">
+            <Box className="flex flex-col gap-4">
               <Box className="border-border bg-muted relative overflow-hidden rounded-lg border p-6">
                 <div className="relative flex h-96 items-center justify-center">
                   <ProductBadge className="absolute top-4 right-4">
@@ -83,18 +83,18 @@ export default function ProductPage() {
                   </Box>
                 ))}
               </Grid>
-            </div>
+            </Box>
 
             {/* Product Details */}
             <Box className="flex flex-col gap-6">
               {/* Rating & Price */}
-              <div className="flex flex-col gap-4">
-                <div className="flex items-center justify-between">
+              <Box className="flex flex-col gap-4">
+                <Box className="flex items-center justify-between">
                   <ProductRating rating={4.5} reviews={238} />
                   <Button variant="outline" iconOnly rounded aria-label="Add to wishlist">
                     <Icon name="Heart" />
                   </Button>
-                </div>
+                </Box>
 
                 <ProductPrice current={149.99} original={199.99} />
 
@@ -102,12 +102,12 @@ export default function ProductPage() {
                   High-quality wireless headphones with active noise cancellation and
                   30-hour battery life. Perfect for travel, work, and everyday use.
                 </Text>
-              </div>
+              </Box>
 
               {/* Color Selection */}
-              <div className="flex flex-col gap-3">
+              <Box className="flex flex-col gap-3">
                 <Typography type="h6">Color: {selectedColor}</Typography>
-                <div className="flex gap-3">
+                <Box className="flex gap-3">
                   {colors.map((color) => (
                     <button
                       key={color}
@@ -130,13 +130,13 @@ export default function ProductPage() {
                       aria-label={`Select ${color} color`}
                     />
                   ))}
-                </div>
-              </div>
+                </Box>
+              </Box>
 
               {/* Size Selection */}
-              <div className="flex flex-col gap-3">
+              <Box className="flex flex-col gap-3">
                 <Typography type="h6">Size</Typography>
-                <div className="grid grid-cols-3 gap-2">
+                <Box className="grid grid-cols-3 gap-2">
                   {sizes.map((size) => (
                     <Button
                       key={size}
@@ -147,13 +147,13 @@ export default function ProductPage() {
                       {size}
                     </Button>
                   ))}
-                </div>
-              </div>
+                </Box>
+              </Box>
 
               {/* Quantity Selector */}
-              <div className="flex flex-col gap-3">
+              <Box className="flex flex-col gap-3">
                 <Typography type="h6">Quantity</Typography>
-                <div className="border-border inline-flex items-center rounded-lg border">
+                <Box className="border-border inline-flex items-center rounded-lg border">
                   <Button
                     variant="ghost"
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
@@ -173,30 +173,30 @@ export default function ProductPage() {
                   >
                     <Icon name="Plus" size="sm" />
                   </Button>
-                </div>
-              </div>
+                </Box>
+              </Box>
 
               {/* Action Buttons */}
-              <div className="flex gap-3">
+              <Box className="flex gap-3">
                 <Button className="flex-1" icon="ShoppingCart" iconPosition="left">
                   Add to Cart
                 </Button>
                 <Button variant="outline" className="flex-1">
                   Buy Now
                 </Button>
-              </div>
+              </Box>
 
               {/* Info */}
               <Box className="border-border bg-muted flex gap-3 rounded-lg border p-4">
                 <Icon name="Truck" className="text-primary mt-1 flex-shrink-0" />
-                <div className="flex flex-col gap-1">
+                <Box className="flex flex-col gap-1">
                   <Text type="small" className="font-medium">
                     Free shipping on orders over $50
                   </Text>
                   <Text type="small" className="text-muted-foreground">
                     30-day money back guarantee
                   </Text>
-                </div>
+                </Box>
               </Box>
             </Box>
           </Grid>
@@ -232,40 +232,40 @@ export default function ProductPage() {
                 <AccordionItem value="specs">
                   <AccordionTrigger>Technical Specifications</AccordionTrigger>
                   <AccordionContent>
-                    <div className="space-y-2">
-                      <div className="flex justify-between">
+                    <Box className="space-y-2">
+                      <Box className="flex justify-between">
                         <Text type="small" className="font-medium">
                           Battery Life:
                         </Text>
                         <Text type="small" className="text-muted-foreground">
                           30 hours
                         </Text>
-                      </div>
-                      <div className="flex justify-between">
+                      </Box>
+                      <Box className="flex justify-between">
                         <Text type="small" className="font-medium">
                           Charging Time:
                         </Text>
                         <Text type="small" className="text-muted-foreground">
                           2 hours
                         </Text>
-                      </div>
-                      <div className="flex justify-between">
+                      </Box>
+                      <Box className="flex justify-between">
                         <Text type="small" className="font-medium">
                           Driver Size:
                         </Text>
                         <Text type="small" className="text-muted-foreground">
                           40mm
                         </Text>
-                      </div>
-                      <div className="flex justify-between">
+                      </Box>
+                      <Box className="flex justify-between">
                         <Text type="small" className="font-medium">
                           Connectivity:
                         </Text>
                         <Text type="small" className="text-muted-foreground">
                           Bluetooth 5.0
                         </Text>
-                      </div>
-                    </div>
+                      </Box>
+                    </Box>
                   </AccordionContent>
                 </AccordionItem>
 

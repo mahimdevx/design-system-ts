@@ -343,7 +343,7 @@ export default function Home() {
                 {Array.from({ length: 6 }).map((_, i) => (
                   <GridItem key={i}>
                     <ProductCard>
-                      <ProductImage className="from-primary/20 to-accent/20 relative flex items-center justify-center bg-gradient-to-br">
+                      <ProductImage className="from-primary/20 to-accent/20 relative flex items-center justify-center bg-linear-to-br">
                         {i === 1 && <ProductBadge>-20%</ProductBadge>}
                         <ProductIcon name="Package" size="lg" />
                       </ProductImage>
@@ -368,7 +368,7 @@ export default function Home() {
                 {Array.from({ length: 4 }).map((_, i) => (
                   <GridItem key={i}>
                     <ProductCard>
-                      <ProductImage className="from-primary/20 to-accent/20 relative flex h-64 items-center justify-center bg-gradient-to-br">
+                      <ProductImage className="from-primary/20 to-accent/20 relative flex h-64 items-center justify-center bg-linear-to-br">
                         {i === 0 && <ProductBadge>New</ProductBadge>}
                         <ProductIcon name="ShoppingBag" size="lg" />
                       </ProductImage>
@@ -392,7 +392,7 @@ export default function Home() {
                 {Array.from({ length: 8 }).map((_, i) => (
                   <GridItem key={i}>
                     <ProductCard>
-                      <ProductImage className="from-primary/20 to-accent/20 relative flex h-32 items-center justify-center bg-gradient-to-br">
+                      <ProductImage className="from-primary/20 to-accent/20 relative flex h-32 items-center justify-center bg-linear-to-br">
                         <ProductIcon name="Package" size="base" />
                       </ProductImage>
                       <ProductContent className="gap-2 p-3">
