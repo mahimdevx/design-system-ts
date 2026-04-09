@@ -14,6 +14,7 @@ export const Navbar = () => {
 
   const navLinks = [
     { href: "/", label: "Home" },
+    { href: "/dashboard", label: "Dashboard" },
     { href: "/product", label: "Wireless Headphones" },
     { href: "/adidas", label: "Adidas Shoes" },
     { href: "/", label: "Shop All" }
