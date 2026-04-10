@@ -1,85 +1,73 @@
 "use client";
 
-import { forwardRef, HTMLAttributes } from "react";
+import { ComponentProps, ReactNode } from "react";
 
-import clsx from "clsx";
+import { cardVariants } from "@styles/layouts/card";
 
-type CardProps = HTMLAttributes<HTMLDivElement>;
+const {
+  containerVariants,
+  headerVariants,
+  titleVariants,
+  descriptionVariants,
+  contentVariants,
+  actionVariants,
+  footerVariants
+} = cardVariants();
 
-export const Card = forwardRef<HTMLDivElement, CardProps>(
-  ({ className, ...props }, ref) => {
-    return (
-      <div
-        ref={ref}
-        className={clsx(
-          "bg-card text-card-foreground rounded-xl border shadow",
-          className
-        )}
-        {...props}
-      />
-    );
-  }
-);
+type CardProps = ComponentProps<"div"> & {
+  children: ReactNode;
+};
 
-type CardHeaderProps = HTMLAttributes<HTMLDivElement>;
+export function Card({ className, ...props }: CardProps) {
+  const cardClasses = containerVariants({ className });
 
-export const CardHeader = forwardRef<HTMLDivElement, CardHeaderProps>(function CardHeader(
-  { className, ...props },
-  ref
-) {
-  return (
-    <div
-      ref={ref}
-      className={clsx("flex flex-col space-y-1.5 p-6", className)}
-      {...props}
-    />
-  );
-});
+  return <div data-slot="card" className={cardClasses} {...props} />;
+}
 
-type CardTitleProps = HTMLAttributes<HTMLDivElement>;
+type CardHeaderProps = ComponentProps<"div">;
 
-export const CardTitle = forwardRef<HTMLDivElement, CardTitleProps>(function CardTitle(
-  { className, ...props },
-  ref
-) {
-  return (
-    <div
-      ref={ref}
-      className={clsx("leading-none font-semibold tracking-tight", className)}
-      {...props}
-    />
-  );
-});
+export function CardHeader({ className, ...props }: CardHeaderProps) {
+  const headerClasses = headerVariants({ className });
 
-type CardDescriptionProps = HTMLAttributes<HTMLDivElement>;
+  return <div data-slot="card-header" className={headerClasses} {...props} />;
+}
 
-export const CardDescription = forwardRef<HTMLDivElement, CardDescriptionProps>(
-  function CardDescription({ className, ...props }, ref) {
-    return (
-      <div
-        ref={ref}
-        className={clsx("text-muted-foreground text-sm", className)}
-        {...props}
-      />
-    );
-  }
-);
+type CardTitleProps = ComponentProps<"div">;
 
-type CardContentProps = HTMLAttributes<HTMLDivElement>;
+export function CardTitle({ className, ...props }: CardTitleProps) {
+  const titleClasses = titleVariants({ className });
 
-export const CardContent = forwardRef<HTMLDivElement, CardContentProps>(
-  function CardContent({ className, ...props }, ref) {
-    return <div ref={ref} className={clsx("p-6 pt-0", className)} {...props} />;
-  }
-);
+  return <div data-slot="card-title" className={titleClasses} {...props} />;
+}
 
-type CardFooterProps = HTMLAttributes<HTMLDivElement>;
+type CardDescriptionProps = ComponentProps<"div">;
 
-export const CardFooter = forwardRef<HTMLDivElement, CardFooterProps>(function CardFooter(
-  { className, ...props },
-  ref
-) {
-  return (
-    <div ref={ref} className={clsx("flex items-center p-6 pt-0", className)} {...props} />
-  );
-});
+export function CardDescription({ className, ...props }: CardDescriptionProps) {
+  const descriptionClasses = descriptionVariants({ className });
+
+  return <div data-slot="card-description" className={descriptionClasses} {...props} />;
+}
+
+type CardContentProps = ComponentProps<"div">;
+
+export function CardContent({ className, ...props }: CardContentProps) {
+  const contentClasses = contentVariants({ className });
+
+  return <div data-slot="card-content" className={contentClasses} {...props} />;
+}
+
+type CardActionProps = ComponentProps<"div">;
+
+export function CardAction({ className, ...props }: CardActionProps) {
+  const actionClasses = actionVariants({ className });
+
+  return <div data-slot="card-action" className={actionClasses} {...props} />;
+}
+
+type CardFooterProps = ComponentProps<"div">;
+
+export function CardFooter({ className, ...props }: CardFooterProps) {
+  const footerClasses = footerVariants({ className });
+
+  return <div data-slot="card-footer" className={footerClasses} {...props} />;
+}

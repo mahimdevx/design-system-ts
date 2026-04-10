@@ -1,12 +1,14 @@
 "use client";
 
 import Link from "next/link";
+
 import { useState } from "react";
 
 import { Button } from "@components/elements/button";
 import { Icon } from "@components/elements/icon";
 import { Box } from "@components/elements/box";
 import { Container } from "@components/elements/container";
+
 import ThemeToggle from "@components/layouts/theme-toggle";
 
 export const Navbar = () => {

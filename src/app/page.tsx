@@ -29,6 +29,25 @@ import {
   ProductAction,
   ProductBadge
 } from "@components/layouts/product-card";
+import { Avatar, AvatarFallback, AvatarImage } from "@components/elements/avatar";
+import { Badge } from "@components/elements/badge";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator
+} from "@components/elements/breadcrumb";
+import { Calendar } from "@components/elements/calendar";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle
+} from "@components/layouts/card";
 
 const TYPOGRAPHY_TYPES = ["h1", "h2", "h3", "h4", "h5", "h6", "p", "small"] as const;
 
@@ -403,23 +422,51 @@ export default function Home() {
               <Grid className="grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {ADIDAS_PRODUCTS.map((product, i) => (
                   <GridItem key={i}>
-                    <ProductCard>
-                      <ProductImage src={product.image} alt={product.name}>
-                        {product.badge && <ProductBadge>{product.badge}</ProductBadge>}
-                      </ProductImage>
-                      <ProductContent>
-                        <ProductTitle>{product.name}</ProductTitle>
-                        <ProductRating
-                          rating={product.rating}
-                          reviews={product.reviews}
+                    <Card>
+                      <div className="bg-muted relative h-48 overflow-hidden rounded-t-lg">
+                        <img
+                          src={product.image}
+                          alt={product.name}
+                          className="h-full w-full object-cover"
                         />
-                        <ProductPrice
-                          current={product.price}
-                          original={product.original}
-                        />
-                        <ProductAction icon="ShoppingCart">Add to Cart</ProductAction>
-                      </ProductContent>
-                    </ProductCard>
+                        {product.badge && (
+                          <Badge className="absolute top-3 right-3">
+                            {product.badge}
+                          </Badge>
+                        )}
+                      </div>
+                      <CardContent className="flex flex-col gap-3 pt-4">
+                        <CardTitle className="text-sm">{product.name}</CardTitle>
+                        <div className="flex items-center gap-2">
+                          <div className="flex items-center gap-1">
+                            <Icon name="Star" size="sm" className="text-yellow-500" />
+                            <Text type="small" className="font-medium">
+                              {product.rating}
+                            </Text>
+                          </div>
+                          <Text type="small" className="text-muted-foreground">
+                            ({product.reviews})
+                          </Text>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Text type="small" className="font-semibold">
+                            ${product.price}
+                          </Text>
+                          {product.original && (
+                            <Text
+                              type="small"
+                              className="text-muted-foreground line-through"
+                            >
+                              ${product.original}
+                            </Text>
+                          )}
+                        </div>
+                        <Button variant="link" className="justify-start">
+                          <Icon name="ShoppingCart" size="sm" />
+                          Add to Cart
+                        </Button>
+                      </CardContent>
+                    </Card>
                   </GridItem>
                 ))}
               </Grid>
@@ -430,29 +477,49 @@ export default function Home() {
               <Grid className="grid-cols-1 gap-4 sm:grid-cols-2">
                 {ADIDAS_PRODUCTS.slice(0, 4).map((product, i) => (
                   <GridItem key={i}>
-                    <ProductCard>
-                      <ProductImage
-                        src={product.image}
-                        alt={product.name}
-                        className="relative flex h-64 items-center justify-center"
-                      >
-                        {i === 0 && <ProductBadge>Deal</ProductBadge>}
-                      </ProductImage>
-                      <ProductContent>
-                        <ProductTitle>{product.name}</ProductTitle>
-                        <ProductRating
-                          rating={product.rating}
-                          reviews={product.reviews}
+                    <Card>
+                      <div className="bg-muted relative h-64 overflow-hidden rounded-t-lg">
+                        <img
+                          src={product.image}
+                          alt={product.name}
+                          className="h-full w-full object-cover"
                         />
-                        <ProductPrice
-                          current={product.price}
-                          original={product.original}
-                        />
-                        <ProductAction icon="ArrowRight" iconPosition="right">
+                        {i === 0 && (
+                          <Badge className="absolute top-3 right-3">Deal</Badge>
+                        )}
+                      </div>
+                      <CardContent className="flex flex-col gap-4 pt-4">
+                        <CardTitle>{product.name}</CardTitle>
+                        <div className="flex items-center gap-2">
+                          <div className="flex items-center gap-1">
+                            <Icon name="Star" size="sm" className="text-yellow-500" />
+                            <Text type="small" className="font-medium">
+                              {product.rating}
+                            </Text>
+                          </div>
+                          <Text type="small" className="text-muted-foreground">
+                            ({product.reviews})
+                          </Text>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Text type="small" className="text-lg font-semibold">
+                            ${product.price}
+                          </Text>
+                          {product.original && (
+                            <Text
+                              type="small"
+                              className="text-muted-foreground line-through"
+                            >
+                              ${product.original}
+                            </Text>
+                          )}
+                        </div>
+                        <Button variant="link" className="justify-start">
+                          <Icon name="ArrowRight" size="sm" />
                           View Details
-                        </ProductAction>
-                      </ProductContent>
-                    </ProductCard>
+                        </Button>
+                      </CardContent>
+                    </Card>
                   </GridItem>
                 ))}
               </Grid>
@@ -465,20 +532,211 @@ export default function Home() {
               <Grid className="grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 {ADIDAS_PRODUCTS.map((product, i) => (
                   <GridItem key={i}>
-                    <ProductCard>
-                      <ProductImage
-                        src={product.image}
-                        alt={product.name}
-                        className="relative flex h-32 items-center justify-center"
-                      />
-                      <ProductContent className="gap-2 p-3">
-                        <ProductTitle className="text-xs">{product.name}</ProductTitle>
-                        <ProductPrice current={product.price} />
-                      </ProductContent>
-                    </ProductCard>
+                    <Card>
+                      <div className="bg-muted relative h-32 overflow-hidden rounded-t-lg">
+                        <img
+                          src={product.image}
+                          alt={product.name}
+                          className="h-full w-full object-cover"
+                        />
+                      </div>
+                      <CardContent className="flex flex-col gap-1.5 pt-2.5">
+                        <CardTitle className="text-xs">{product.name}</CardTitle>
+                        <Text type="small" className="font-semibold">
+                          ${product.price}
+                        </Text>
+                      </CardContent>
+                    </Card>
                   </GridItem>
                 ))}
               </Grid>
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      <Section className="flex flex-col gap-6" id="avatars">
+        <Typography type="h4">Avatar</Typography>
+
+        <div className="border-border bg-background rounded-lg border p-6">
+          <div className="flex flex-col gap-10">
+            <div className="flex flex-col gap-4">
+              <Typography type="h6">Image Avatars</Typography>
+              <div className="flex flex-wrap items-center gap-4">
+                <Avatar>
+                  <AvatarImage src="https://api.dicebear.com/7.x/avataaars/svg?seed=user1" />
+                  <AvatarFallback>JD</AvatarFallback>
+                </Avatar>
+                <Avatar>
+                  <AvatarImage src="https://api.dicebear.com/7.x/avataaars/svg?seed=user2" />
+                  <AvatarFallback>SJ</AvatarFallback>
+                </Avatar>
+                <Avatar>
+                  <AvatarImage src="https://api.dicebear.com/7.x/avataaars/svg?seed=user3" />
+                  <AvatarFallback>MD</AvatarFallback>
+                </Avatar>
+                <Avatar>
+                  <AvatarImage src="https://api.dicebear.com/7.x/avataaars/svg?seed=user4" />
+                  <AvatarFallback>EA</AvatarFallback>
+                </Avatar>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-4">
+              <Typography type="h6">Fallback Only</Typography>
+              <div className="flex flex-wrap items-center gap-4">
+                <Avatar>
+                  <AvatarFallback>AF</AvatarFallback>
+                </Avatar>
+                <Avatar>
+                  <AvatarFallback>JD</AvatarFallback>
+                </Avatar>
+                <Avatar>
+                  <AvatarFallback>SK</AvatarFallback>
+                </Avatar>
+                <Avatar>
+                  <AvatarFallback>ML</AvatarFallback>
+                </Avatar>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-4">
+              <Typography type="h6">With Text</Typography>
+              <div className="flex flex-col gap-3">
+                {[
+                  { name: "James Davis", initial: "JD" },
+                  { name: "Sarah Johnson", initial: "SJ" },
+                  { name: "Mike Chen", initial: "MC" },
+                  { name: "Emma Wilson", initial: "EW" }
+                ].map((user, i) => (
+                  <div key={i} className="flex items-center gap-3">
+                    <Avatar>
+                      <AvatarImage
+                        src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${user.name}`}
+                      />
+                      <AvatarFallback>{user.initial}</AvatarFallback>
+                    </Avatar>
+                    <div className="flex flex-col gap-0.5">
+                      <Text type="small" className="font-medium">
+                        {user.name}
+                      </Text>
+                      <Text type="small" className="text-muted-foreground">
+                        @{user.initial.toLowerCase()}
+                      </Text>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      <Section className="flex flex-col gap-6" id="badge">
+        <Typography type="h4">Badge</Typography>
+
+        <div className="border-border bg-background rounded-lg border p-6">
+          <div className="flex flex-col gap-10">
+            <div className="flex flex-col gap-4">
+              <Typography type="h6">Variants</Typography>
+              <div className="flex flex-wrap items-center gap-3">
+                <Badge variant="primary">Primary</Badge>
+                <Badge variant="secondary">Secondary</Badge>
+                <Badge variant="accent">Accent</Badge>
+                <Badge variant="soft">Soft</Badge>
+                <Badge variant="outline">Outline</Badge>
+                <Badge variant="muted">Muted</Badge>
+                <Badge variant="destructive">Destructive</Badge>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-4">
+              <Typography type="h6">Status Badges</Typography>
+              <div className="flex flex-wrap items-center gap-3">
+                <Badge variant="primary">Active</Badge>
+                <Badge variant="accent">Processing</Badge>
+                <Badge variant="soft">Pending</Badge>
+                <Badge variant="destructive">Cancelled</Badge>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      <Section className="flex flex-col gap-6" id="breadcrumb">
+        <Typography type="h4">Breadcrumb</Typography>
+
+        <div className="border-border bg-background rounded-lg border p-6">
+          <div className="flex flex-col gap-10">
+            <div className="flex flex-col gap-4">
+              <Typography type="h6">Basic</Typography>
+              <Breadcrumb>
+                <BreadcrumbList>
+                  <BreadcrumbItem>
+                    <BreadcrumbLink href="/">Home</BreadcrumbLink>
+                  </BreadcrumbItem>
+                  <BreadcrumbSeparator />
+                  <BreadcrumbItem>
+                    <BreadcrumbLink href="/products">Products</BreadcrumbLink>
+                  </BreadcrumbItem>
+                  <BreadcrumbSeparator />
+                  <BreadcrumbItem>
+                    <BreadcrumbPage>Shoes</BreadcrumbPage>
+                  </BreadcrumbItem>
+                </BreadcrumbList>
+              </Breadcrumb>
+            </div>
+
+            <div className="flex flex-col gap-4">
+              <Typography type="h6">With Ellipsis</Typography>
+              <Breadcrumb>
+                <BreadcrumbList>
+                  <BreadcrumbItem>
+                    <BreadcrumbLink href="/">Home</BreadcrumbLink>
+                  </BreadcrumbItem>
+                  <BreadcrumbSeparator />
+                  <BreadcrumbItem>
+                    <BreadcrumbLink href="/docs">Documentation</BreadcrumbLink>
+                  </BreadcrumbItem>
+                  <BreadcrumbSeparator />
+                  <BreadcrumbItem>
+                    <BreadcrumbLink href="/docs/components">Components</BreadcrumbLink>
+                  </BreadcrumbItem>
+                  <BreadcrumbSeparator />
+                  <BreadcrumbItem>
+                    <BreadcrumbPage>Button</BreadcrumbPage>
+                  </BreadcrumbItem>
+                </BreadcrumbList>
+              </Breadcrumb>
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      <Section className="flex flex-col gap-6" id="calendar">
+        <Typography type="h4">Calendar</Typography>
+
+        <div className="border-border bg-background rounded-lg border p-6">
+          <div className="flex flex-col gap-10">
+            <div className="flex flex-col gap-4">
+              <Typography type="h6">Single Date Selection</Typography>
+              <div className="flex justify-center">
+                <Calendar mode="single" />
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-4">
+              <Typography type="h6">Date Range Selection</Typography>
+              <div className="flex justify-center">
+                <Calendar mode="range" />
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-4">
+              <Typography type="h6">Multiple Dates Selection</Typography>
+              <div className="flex justify-center">
+                <Calendar mode="multiple" />
+              </div>
             </div>
           </div>
         </div>

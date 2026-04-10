@@ -6,7 +6,7 @@ import * as AccordionPrimitive from "@radix-ui/react-accordion";
 
 import clsx from "clsx";
 
-import { accordionVariants } from "@styles/elements/accordion";
+import { accordionVariants } from "@styles/layouts/accordion";
 
 import { Icon } from "@components/elements/icon";
 

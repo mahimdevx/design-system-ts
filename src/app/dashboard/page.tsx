@@ -19,6 +19,25 @@ import {
   AccordionItem,
   AccordionTrigger
 } from "@components/layouts/accordion";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle
+} from "@components/layouts/card";
+import { Badge } from "@components/elements/badge";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator
+} from "@components/elements/breadcrumb";
+import { Avatar, AvatarFallback, AvatarImage } from "@components/elements/avatar";
+import { Calendar } from "@components/elements/calendar";
 
 interface StatCard {
   label: string;
@@ -149,16 +168,18 @@ const ACTIVITIES: Activity[] = [
   }
 ];
 
-const getStatusColor = (status: "pending" | "processing" | "completed" | "cancelled") => {
+const getStatusVariant = (
+  status: "pending" | "processing" | "completed" | "cancelled"
+) => {
   switch (status) {
     case "completed":
-      return "text-emerald-600 bg-emerald-50";
+      return "primary";
     case "processing":
-      return "text-blue-600 bg-blue-50";
+      return "accent";
     case "pending":
-      return "text-yellow-600 bg-yellow-50";
+      return "soft";
     case "cancelled":
-      return "text-red-600 bg-red-50";
+      return "destructive";
   }
 };
 
@@ -177,11 +198,29 @@ const getStatColor = (color: StatCard["color"]) => {
 
 export default function DashboardPage() {
   const [selectedPeriod, setSelectedPeriod] = useState("week");
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
 
   return (
     <Main>
       {/* Navbar */}
       <Navbar />
+
+      {/* Breadcrumb Navigation */}
+      <Section className="py-2 xl:py-2">
+        <Container>
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/">Home</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbPage>Dashboard</BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+        </Container>
+      </Section>
 
       {/* Welcome Section */}
       <Section className="from-primary/5 to-accent/5 bg-gradient-to-r">
@@ -196,11 +235,11 @@ export default function DashboardPage() {
               </Box>
 
               <Box className="flex gap-2">
-                <Button variant="outline">
+                <Button variant="link">
                   <Icon name="Download" size="sm" />
                   Export Report
                 </Button>
-                <Button>
+                <Button variant="link">
                   <Icon name="Plus" size="sm" />
                   New Order
                 </Button>
@@ -220,7 +259,7 @@ export default function DashboardPage() {
                 {["day", "week", "month", "year"].map((period) => (
                   <Button
                     key={period}
-                    variant={selectedPeriod === period ? "primary" : "ghost"}
+                    variant="link"
                     size="sm"
                     onClick={() => setSelectedPeriod(period)}
                   >
@@ -233,10 +272,8 @@ export default function DashboardPage() {
             <Grid className="grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
               {STATS.map((stat) => (
                 <GridItem key={stat.label}>
-                  <Box
-                    className={`border-border rounded-lg border bg-gradient-to-br ${getStatColor(stat.color)} p-6`}
-                  >
-                    <Box className="flex items-start justify-between">
+                  <Card className={`bg-gradient-to-br ${getStatColor(stat.color)}`}>
+                    <CardContent className="flex items-start justify-between">
                       <Box className="flex flex-col gap-2">
                         <Text type="small" className="text-muted-foreground">
                           {stat.label}
@@ -246,8 +283,8 @@ export default function DashboardPage() {
                       <Box className="bg-background rounded-lg p-2">
                         <Icon name={stat.icon} className="text-muted-foreground" />
                       </Box>
-                    </Box>
-                    <Box className="mt-4 flex items-center gap-1">
+                    </CardContent>
+                    <CardContent className="mt-4 flex items-center gap-1">
                       <Icon
                         name={stat.change > 0 ? "TrendingUp" : "TrendingDown"}
                         size="sm"
@@ -264,8 +301,8 @@ export default function DashboardPage() {
                         {stat.change > 0 ? "+" : ""}
                         {stat.change}% from last {selectedPeriod}
                       </Text>
-                    </Box>
-                  </Box>
+                    </CardContent>
+                  </Card>
                 </GridItem>
               ))}
             </Grid>
@@ -279,117 +316,122 @@ export default function DashboardPage() {
           <Grid className="grid-cols-1 gap-8 lg:grid-cols-3">
             {/* Recent Orders */}
             <GridItem className="lg:col-span-2">
-              <Box className="border-border bg-background rounded-lg border p-6">
-                <Box className="mb-6 flex items-center justify-between">
-                  <Typography type="h5">Recent Orders</Typography>
-                  <Button variant="ghost" size="sm">
-                    View All
-                    <Icon name="ArrowRight" size="sm" />
-                  </Button>
-                </Box>
+              <Card>
+                <CardHeader>
+                  <Box className="flex items-center justify-between">
+                    <CardTitle>Recent Orders</CardTitle>
+                    <Button variant="link" size="sm">
+                      View All
+                      <Icon name="ArrowRight" size="sm" />
+                    </Button>
+                  </Box>
+                </CardHeader>
 
-                <Box className="overflow-x-auto">
-                  <table className="w-full">
-                    <thead>
-                      <tr className="border-border border-b">
-                        <th className="text-muted-foreground px-4 py-3 text-left text-sm font-medium">
-                          Order ID
-                        </th>
-                        <th className="text-muted-foreground px-4 py-3 text-left text-sm font-medium">
-                          Customer
-                        </th>
-                        <th className="text-muted-foreground px-4 py-3 text-right text-sm font-medium">
-                          Amount
-                        </th>
-                        <th className="text-muted-foreground px-4 py-3 text-left text-sm font-medium">
-                          Status
-                        </th>
-                        <th className="text-muted-foreground px-4 py-3 text-left text-sm font-medium">
-                          Date
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {RECENT_ORDERS.map((order) => (
-                        <tr
-                          key={order.id}
-                          className="border-border hover:bg-muted border-b"
-                        >
-                          <td className="px-4 py-3">
-                            <Text type="small" className="font-medium">
-                              {order.id}
-                            </Text>
-                          </td>
-                          <td className="px-4 py-3">
-                            <Text type="small">{order.customer}</Text>
-                          </td>
-                          <td className="px-4 py-3 text-right">
-                            <Text type="small" className="font-medium">
-                              ${order.amount.toFixed(2)}
-                            </Text>
-                          </td>
-                          <td className="px-4 py-3">
-                            <span
-                              className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${getStatusColor(order.status)}`}
-                            >
-                              {order.status.charAt(0).toUpperCase() +
-                                order.status.slice(1)}
-                            </span>
-                          </td>
-                          <td className="px-4 py-3">
-                            <Text type="small" className="text-muted-foreground">
-                              {order.date}
-                            </Text>
-                          </td>
+                <CardContent>
+                  <Box className="overflow-x-auto">
+                    <table className="w-full">
+                      <thead>
+                        <tr className="border-border border-b">
+                          <th className="text-muted-foreground px-4 py-3 text-left text-sm font-medium">
+                            Order ID
+                          </th>
+                          <th className="text-muted-foreground px-4 py-3 text-left text-sm font-medium">
+                            Customer
+                          </th>
+                          <th className="text-muted-foreground px-4 py-3 text-right text-sm font-medium">
+                            Amount
+                          </th>
+                          <th className="text-muted-foreground px-4 py-3 text-left text-sm font-medium">
+                            Status
+                          </th>
+                          <th className="text-muted-foreground px-4 py-3 text-left text-sm font-medium">
+                            Date
+                          </th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </Box>
-              </Box>
+                      </thead>
+                      <tbody>
+                        {RECENT_ORDERS.map((order) => (
+                          <tr
+                            key={order.id}
+                            className="border-border hover:bg-muted border-b"
+                          >
+                            <td className="px-4 py-3">
+                              <Text type="small" className="font-medium">
+                                {order.id}
+                              </Text>
+                            </td>
+                            <td className="px-4 py-3">
+                              <Text type="small">{order.customer}</Text>
+                            </td>
+                            <td className="px-4 py-3 text-right">
+                              <Text type="small" className="font-medium">
+                                ${order.amount.toFixed(2)}
+                              </Text>
+                            </td>
+                            <td className="px-4 py-3">
+                              <Badge variant={getStatusVariant(order.status) as any}>
+                                {order.status.charAt(0).toUpperCase() +
+                                  order.status.slice(1)}
+                              </Badge>
+                            </td>
+                            <td className="px-4 py-3">
+                              <Text type="small" className="text-muted-foreground">
+                                {order.date}
+                              </Text>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </Box>
+                </CardContent>
+              </Card>
             </GridItem>
 
             {/* Activity Feed & Quick Actions */}
             <GridItem className="flex flex-col gap-6">
               {/* Quick Actions */}
-              <Box className="border-border bg-background rounded-lg border p-6">
-                <Typography type="h5" className="mb-4">
-                  Quick Actions
-                </Typography>
-                <Box className="flex flex-col gap-2">
-                  <Button variant="outline" className="justify-start">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Quick Actions</CardTitle>
+                </CardHeader>
+                <CardContent className="flex flex-col gap-2">
+                  <Button variant="link" className="justify-start">
                     <Icon name="Plus" size="sm" />
                     Create Product
                   </Button>
-                  <Button variant="outline" className="justify-start">
+                  <Button variant="link" className="justify-start">
                     <Icon name="Mail" size="sm" />
                     Send Newsletter
                   </Button>
-                  <Button variant="outline" className="justify-start">
+                  <Button variant="link" className="justify-start">
                     <Icon name="BarChart3" size="sm" />
                     View Analytics
                   </Button>
-                  <Button variant="outline" className="justify-start">
+                  <Button variant="link" className="justify-start">
                     <Icon name="Users" size="sm" />
                     Manage Customers
                   </Button>
-                </Box>
-              </Box>
+                </CardContent>
+              </Card>
 
               {/* Activity Feed */}
-              <Box className="border-border bg-background rounded-lg border p-6">
-                <Typography type="h5" className="mb-4">
-                  Recent Activity
-                </Typography>
-                <Box className="flex flex-col gap-4">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Recent Activity</CardTitle>
+                </CardHeader>
+                <CardContent className="flex flex-col gap-4">
                   {ACTIVITIES.map((activity) => (
                     <Box
                       key={activity.id}
                       className="border-border flex gap-3 border-b pb-4 last:border-b-0"
                     >
-                      <Box className="bg-muted flex-shrink-0 rounded-lg p-2">
-                        <Icon name={activity.icon} size="sm" />
-                      </Box>
+                      <Avatar>
+                        <AvatarImage
+                          src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${activity.id}`}
+                        />
+                        <AvatarFallback>{activity.title.charAt(0)}</AvatarFallback>
+                      </Avatar>
                       <Box className="min-w-0 flex-1">
                         <Text type="small" className="font-medium">
                           {activity.title}
@@ -403,8 +445,22 @@ export default function DashboardPage() {
                       </Box>
                     </Box>
                   ))}
-                </Box>
-              </Box>
+                </CardContent>
+              </Card>
+
+              {/* Calendar */}
+              <Card>
+                <CardHeader>
+                  <CardTitle>Calendar</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <Calendar
+                    mode="single"
+                    selected={selectedDate}
+                    onSelect={setSelectedDate}
+                  />
+                </CardContent>
+              </Card>
             </GridItem>
           </Grid>
         </Container>
@@ -419,45 +475,51 @@ export default function DashboardPage() {
             <Grid className="grid-cols-1 gap-6 lg:grid-cols-2">
               {/* Sales Chart Placeholder */}
               <GridItem>
-                <Box className="border-border bg-background rounded-lg border p-6">
-                  <Box className="mb-6 flex items-center justify-between">
-                    <Typography type="h6">Sales Trend</Typography>
-                    <Button variant="ghost" size="sm">
-                      <Icon name="MoreHorizontal" size="sm" />
-                    </Button>
-                  </Box>
-                  <Box className="flex h-48 items-end justify-between gap-2">
-                    {[40, 60, 50, 70, 80, 65, 90, 75].map((height, i) => (
-                      <Box
-                        key={i}
-                        className="from-primary to-primary/50 flex-1 rounded-t-lg bg-gradient-to-t"
-                        style={{ height: `${height}%` }}
-                      />
-                    ))}
-                  </Box>
-                  <Box className="mt-4 flex justify-between">
-                    {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun", "Today"].map(
-                      (day) => (
-                        <Text key={day} type="small" className="text-muted-foreground">
-                          {day}
-                        </Text>
-                      )
-                    )}
-                  </Box>
-                </Box>
+                <Card>
+                  <CardHeader>
+                    <Box className="flex items-center justify-between">
+                      <CardTitle>Sales Trend</CardTitle>
+                      <Button variant="link" size="sm">
+                        <Icon name="MoreHorizontal" size="sm" />
+                      </Button>
+                    </Box>
+                  </CardHeader>
+                  <CardContent>
+                    <Box className="flex h-48 items-end justify-between gap-2">
+                      {[40, 60, 50, 70, 80, 65, 90, 75].map((height, i) => (
+                        <Box
+                          key={i}
+                          className="from-primary to-primary/50 flex-1 rounded-t-lg bg-gradient-to-t"
+                          style={{ height: `${height}%` }}
+                        />
+                      ))}
+                    </Box>
+                    <Box className="mt-4 flex justify-between">
+                      {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun", "Today"].map(
+                        (day) => (
+                          <Text key={day} type="small" className="text-muted-foreground">
+                            {day}
+                          </Text>
+                        )
+                      )}
+                    </Box>
+                  </CardContent>
+                </Card>
               </GridItem>
 
               {/* Top Products */}
               <GridItem>
-                <Box className="border-border bg-background rounded-lg border p-6">
-                  <Box className="mb-6 flex items-center justify-between">
-                    <Typography type="h6">Top Products</Typography>
-                    <Button variant="ghost" size="sm">
-                      <Icon name="MoreHorizontal" size="sm" />
-                    </Button>
-                  </Box>
+                <Card>
+                  <CardHeader>
+                    <Box className="flex items-center justify-between">
+                      <CardTitle>Top Products</CardTitle>
+                      <Button variant="link" size="sm">
+                        <Icon name="MoreHorizontal" size="sm" />
+                      </Button>
+                    </Box>
+                  </CardHeader>
 
-                  <Box className="flex flex-col gap-4">
+                  <CardContent className="flex flex-col gap-4">
                     {[
                       { name: "Adidas Ultraboost", sales: 324, color: "bg-primary" },
                       { name: "Adidas NMD R1", sales: 289, color: "bg-accent" },
@@ -483,8 +545,8 @@ export default function DashboardPage() {
                         </Box>
                       </Box>
                     ))}
-                  </Box>
-                </Box>
+                  </CardContent>
+                </Card>
               </GridItem>
             </Grid>
           </Box>
