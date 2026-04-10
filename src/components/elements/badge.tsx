@@ -20,7 +20,7 @@ import { badgeVariants } from "@styles/elements/badge";
 
 type BadgeProps = ComponentProps<"span"> &
   VariantProps<typeof badgeVariants> & {
-    children: String;
+    children: string;
   };
 
 export function Badge({ variant, className, ...props }: BadgeProps) {
