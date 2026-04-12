@@ -29,7 +29,14 @@ import {
   ProductAction,
   ProductBadge
 } from "@components/layouts/product-card";
-import { Avatar, AvatarFallback, AvatarImage } from "@components/elements/avatar";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+  AvatarBadge,
+  AvatarGroup,
+  AvatarGroupCount
+} from "@components/elements/avatar";
 import { Badge } from "@components/elements/badge";
 import {
   Breadcrumb,
@@ -39,7 +46,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator
 } from "@components/elements/breadcrumb";
-import { Calendar } from "@components/elements/calendar";
+import { Calendar } from "@components/layouts/calendar";
 import {
   Card,
   CardAction,
@@ -48,6 +55,48 @@ import {
   CardHeader,
   CardTitle
 } from "@components/layouts/card";
+import { Alert, AlertDescription, AlertTitle } from "@components/elements/alert";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogTitle,
+  AlertDialogTrigger
+} from "@components/elements/alert-dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger
+} from "@components/elements/dialog";
+import {
+  Drawer,
+  DrawerContent,
+  DrawerDescription,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger
+} from "@components/layouts/drawer";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger
+} from "@components/layouts/dropdown";
+import { Popover, PopoverContent, PopoverTrigger } from "@components/layouts/popover";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@components/layouts/tabs";
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList
+} from "@components/layouts/command";
 
 const TYPOGRAPHY_TYPES = ["h1", "h2", "h3", "h4", "h5", "h6", "p", "small"] as const;
 
@@ -628,6 +677,69 @@ export default function Home() {
                 ))}
               </div>
             </div>
+
+            <div className="flex flex-col gap-4">
+              <Typography type="h6">With Badge</Typography>
+              <div className="flex flex-wrap items-center gap-4">
+                <Avatar>
+                  <AvatarImage src="https://api.dicebear.com/7.x/avataaars/svg?seed=user1" />
+                  <AvatarFallback>JD</AvatarFallback>
+                  <AvatarBadge>
+                    <Icon name="Check" size="xs" />
+                  </AvatarBadge>
+                </Avatar>
+                <Avatar>
+                  <AvatarImage src="https://api.dicebear.com/7.x/avataaars/svg?seed=user2" />
+                  <AvatarFallback>SJ</AvatarFallback>
+                  <AvatarBadge />
+                </Avatar>
+                <Avatar>
+                  <AvatarImage src="https://api.dicebear.com/7.x/avataaars/svg?seed=user3" />
+                  <AvatarFallback>MC</AvatarFallback>
+                </Avatar>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-4">
+              <Typography type="h6">Avatar Group</Typography>
+              <AvatarGroup>
+                <Avatar>
+                  <AvatarImage src="https://api.dicebear.com/7.x/avataaars/svg?seed=user1" />
+                  <AvatarFallback>JD</AvatarFallback>
+                </Avatar>
+                <Avatar>
+                  <AvatarImage src="https://api.dicebear.com/7.x/avataaars/svg?seed=user2" />
+                  <AvatarFallback>SJ</AvatarFallback>
+                </Avatar>
+                <Avatar>
+                  <AvatarImage src="https://api.dicebear.com/7.x/avataaars/svg?seed=user3" />
+                  <AvatarFallback>MC</AvatarFallback>
+                </Avatar>
+                <Avatar>
+                  <AvatarImage src="https://api.dicebear.com/7.x/avataaars/svg?seed=user4" />
+                  <AvatarFallback>EA</AvatarFallback>
+                </Avatar>
+              </AvatarGroup>
+            </div>
+
+            <div className="flex flex-col gap-4">
+              <Typography type="h6">Avatar Group with Count</Typography>
+              <AvatarGroup>
+                <Avatar>
+                  <AvatarImage src="https://api.dicebear.com/7.x/avataaars/svg?seed=user1" />
+                  <AvatarFallback>JD</AvatarFallback>
+                </Avatar>
+                <Avatar>
+                  <AvatarImage src="https://api.dicebear.com/7.x/avataaars/svg?seed=user2" />
+                  <AvatarFallback>SJ</AvatarFallback>
+                </Avatar>
+                <Avatar>
+                  <AvatarImage src="https://api.dicebear.com/7.x/avataaars/svg?seed=user3" />
+                  <AvatarFallback>MC</AvatarFallback>
+                </Avatar>
+                <AvatarGroupCount>+12</AvatarGroupCount>
+              </AvatarGroup>
+            </div>
           </div>
         </div>
       </Section>
@@ -739,6 +851,465 @@ export default function Home() {
               </div>
             </div>
           </div>
+        </div>
+      </Section>
+
+      <Section className="flex flex-col gap-6" id="text">
+        <Typography type="h4">Text</Typography>
+
+        <div className="border-border bg-background rounded-lg border p-6">
+          <div className="flex flex-col gap-4">
+            <Text>This is a regular text element</Text>
+            <Text className="font-semibold">Bold text with custom className</Text>
+            <Text className="text-muted-foreground">
+              Muted text for secondary information
+            </Text>
+            <Text className="text-destructive">Destructive text for warnings</Text>
+            <Text className="text-primary font-bold">Primary text - bold</Text>
+          </div>
+        </div>
+      </Section>
+
+      <Section className="flex flex-col gap-6" id="alert">
+        <Typography type="h4">Alert</Typography>
+
+        <div className="border-border bg-background rounded-lg border p-6">
+          <div className="flex flex-col gap-4">
+            <Alert>
+              <Icon name="AlertCircle" />
+              <AlertTitle>Heads up!</AlertTitle>
+              <AlertDescription>
+                This is a basic alert with an icon and description.
+              </AlertDescription>
+            </Alert>
+
+            <Alert>
+              <Icon name="CheckCircle2" />
+              <AlertTitle>Success</AlertTitle>
+              <AlertDescription>Your action was completed successfully.</AlertDescription>
+            </Alert>
+
+            <Alert>
+              <Icon name="AlertTriangle" />
+              <AlertTitle>Warning</AlertTitle>
+              <AlertDescription>
+                This is an important warning that needs your attention.
+              </AlertDescription>
+            </Alert>
+          </div>
+        </div>
+      </Section>
+
+      <Section className="flex flex-col gap-6" id="alert-dialog">
+        <Typography type="h4">Alert Dialog</Typography>
+
+        <div className="border-border bg-background rounded-lg border p-6">
+          <div className="flex flex-wrap items-center gap-3">
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button variant="destructive">Delete Item</Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+                <AlertDialogDescription>
+                  This action cannot be undone. This will permanently delete the item.
+                </AlertDialogDescription>
+                <div className="flex justify-end gap-2">
+                  <AlertDialogCancel asChild>
+                    <Button variant="outline">Cancel</Button>
+                  </AlertDialogCancel>
+                  <AlertDialogAction asChild>
+                    <Button variant="destructive">Delete</Button>
+                  </AlertDialogAction>
+                </div>
+              </AlertDialogContent>
+            </AlertDialog>
+
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button variant="outline">Confirm Action</Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogTitle>Confirm</AlertDialogTitle>
+                <AlertDialogDescription>
+                  Do you want to proceed with this action?
+                </AlertDialogDescription>
+                <div className="flex justify-end gap-2">
+                  <AlertDialogCancel asChild>
+                    <Button variant="secondary">Cancel</Button>
+                  </AlertDialogCancel>
+                  <AlertDialogAction asChild>
+                    <Button>Confirm</Button>
+                  </AlertDialogAction>
+                </div>
+              </AlertDialogContent>
+            </AlertDialog>
+          </div>
+        </div>
+      </Section>
+
+      <Section className="flex flex-col gap-6" id="dialog">
+        <Typography type="h4">Dialog</Typography>
+
+        <div className="border-border bg-background rounded-lg border p-6">
+          <div className="flex flex-wrap items-center gap-3">
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button>Open Dialog</Button>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Dialog Title</DialogTitle>
+                  <DialogDescription>
+                    This is a dialog component with header, title, description, and
+                    content.
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="flex flex-col gap-4">
+                  <Text className="text-muted-foreground">
+                    Add your dialog content here.
+                  </Text>
+                  <div className="flex justify-end gap-2">
+                    <Button variant="outline" asChild>
+                      <button
+                        onClick={() =>
+                          document.querySelector("[data-dialog-close]")?.click()
+                        }
+                      >
+                        Close
+                      </button>
+                    </Button>
+                    <Button>Save Changes</Button>
+                  </div>
+                </div>
+              </DialogContent>
+            </Dialog>
+
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button variant="secondary">Edit Form</Button>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Edit Information</DialogTitle>
+                  <DialogDescription>
+                    Make changes to your profile information here.
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="flex flex-col gap-4">
+                  <div className="flex flex-col gap-2">
+                    <Text type="small" className="font-medium">
+                      Name
+                    </Text>
+                    <input
+                      type="text"
+                      placeholder="Enter your name"
+                      className="border-border bg-background rounded border px-3 py-2"
+                    />
+                  </div>
+                  <div className="flex justify-end gap-2">
+                    <Button variant="outline">Cancel</Button>
+                    <Button>Save</Button>
+                  </div>
+                </div>
+              </DialogContent>
+            </Dialog>
+          </div>
+        </div>
+      </Section>
+
+      <Section className="flex flex-col gap-6" id="drawer">
+        <Typography type="h4">Drawer</Typography>
+
+        <div className="border-border bg-background rounded-lg border p-6">
+          <div className="flex flex-wrap items-center gap-3">
+            <Drawer>
+              <DrawerTrigger asChild>
+                <Button>Open Drawer</Button>
+              </DrawerTrigger>
+              <DrawerContent>
+                <DrawerHeader>
+                  <DrawerTitle>Drawer Title</DrawerTitle>
+                  <DrawerDescription>
+                    This is a drawer component that slides in from the side.
+                  </DrawerDescription>
+                </DrawerHeader>
+                <div className="flex flex-col gap-4 px-4 pb-4">
+                  <Text className="text-muted-foreground">
+                    Add your drawer content here.
+                  </Text>
+                  <Button>Action</Button>
+                </div>
+              </DrawerContent>
+            </Drawer>
+
+            <Drawer>
+              <DrawerTrigger asChild>
+                <Button variant="outline">Navigation</Button>
+              </DrawerTrigger>
+              <DrawerContent>
+                <DrawerHeader>
+                  <DrawerTitle>Menu</DrawerTitle>
+                </DrawerHeader>
+                <div className="flex flex-col gap-2 px-4 pb-4">
+                  <Button variant="link" className="justify-start">
+                    Home
+                  </Button>
+                  <Button variant="link" className="justify-start">
+                    About
+                  </Button>
+                  <Button variant="link" className="justify-start">
+                    Services
+                  </Button>
+                  <Button variant="link" className="justify-start">
+                    Contact
+                  </Button>
+                </div>
+              </DrawerContent>
+            </Drawer>
+          </div>
+        </div>
+      </Section>
+
+      <Section className="flex flex-col gap-6" id="dropdown">
+        <Typography type="h4">Dropdown Menu</Typography>
+
+        <div className="border-border bg-background rounded-lg border p-6">
+          <div className="flex flex-wrap items-center gap-3">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline">Options</Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start">
+                <DropdownMenuItem>
+                  <Icon name="Copy" size="sm" className="mr-2" />
+                  Copy
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Icon name="Edit" size="sm" className="mr-2" />
+                  Edit
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Icon name="Trash2" size="sm" className="mr-2" />
+                  Delete
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button>
+                  Actions
+                  <Icon name="ChevronDown" size="sm" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuItem>
+                  <Icon name="Download" size="sm" className="mr-2" />
+                  Download
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Icon name="Share2" size="sm" className="mr-2" />
+                  Share
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Icon name="MoreVertical" size="sm" className="mr-2" />
+                  More
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+        </div>
+      </Section>
+
+      <Section className="flex flex-col gap-6" id="popover">
+        <Typography type="h4">Popover</Typography>
+
+        <div className="border-border bg-background rounded-lg border p-6">
+          <div className="flex flex-wrap items-center gap-3">
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button variant="outline">
+                  <Icon name="HelpCircle" size="sm" className="mr-2" />
+                  Help
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-60">
+                <div className="flex flex-col gap-2">
+                  <Typography type="h6">Need Help?</Typography>
+                  <Text type="small" className="text-muted-foreground">
+                    Click to learn more about this feature and how to use it effectively.
+                  </Text>
+                </div>
+              </PopoverContent>
+            </Popover>
+
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button>
+                  <Icon name="Info" size="sm" className="mr-2" />
+                  Information
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-72">
+                <div className="flex flex-col gap-3">
+                  <Typography type="h6">Feature Information</Typography>
+                  <Text type="small">
+                    This is a popover displaying detailed information about a feature.
+                  </Text>
+                  <Button size="sm">Learn More</Button>
+                </div>
+              </PopoverContent>
+            </Popover>
+          </div>
+        </div>
+      </Section>
+
+      <Section className="flex flex-col gap-6" id="tabs">
+        <Typography type="h4">Tabs</Typography>
+
+        <div className="border-border bg-background rounded-lg border p-6">
+          <Tabs defaultValue="tab1">
+            <TabsList>
+              <TabsTrigger value="tab1">Overview</TabsTrigger>
+              <TabsTrigger value="tab2">Details</TabsTrigger>
+              <TabsTrigger value="tab3">Settings</TabsTrigger>
+            </TabsList>
+            <TabsContent value="tab1" className="mt-4">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Overview</CardTitle>
+                  <CardDescription>View an overview of the content</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Text>This is the overview tab content.</Text>
+                </CardContent>
+              </Card>
+            </TabsContent>
+            <TabsContent value="tab2" className="mt-4">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Details</CardTitle>
+                  <CardDescription>Detailed information</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Text>
+                    This is the details tab content with more specific information.
+                  </Text>
+                </CardContent>
+              </Card>
+            </TabsContent>
+            <TabsContent value="tab3" className="mt-4">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Settings</CardTitle>
+                  <CardDescription>Manage your settings</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Text>This is the settings tab content.</Text>
+                </CardContent>
+              </Card>
+            </TabsContent>
+          </Tabs>
+        </div>
+      </Section>
+
+      <Section className="flex flex-col gap-6" id="cards">
+        <Typography type="h4">Cards</Typography>
+
+        <div className="border-border bg-background rounded-lg border p-6">
+          <Grid className="grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <Card>
+              <CardHeader>
+                <CardTitle>Card Title</CardTitle>
+                <CardDescription>Card subtitle or description</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Text type="small" className="text-muted-foreground">
+                  This is a basic card component showcasing the card layout with header
+                  and content.
+                </Text>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Icon name="Star" size="sm" className="text-yellow-500" />
+                  Featured
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="flex flex-col gap-3">
+                  <Text className="font-semibold">Premium Card</Text>
+                  <Text type="small" className="text-muted-foreground">
+                    This card demonstrates a featured card variant.
+                  </Text>
+                  <Button size="sm">Learn More</Button>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle>Interactive Card</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="flex flex-col gap-3">
+                  <Text type="small" className="text-muted-foreground">
+                    A card with interactive elements.
+                  </Text>
+                  <div className="flex gap-2">
+                    <Button size="sm" variant="outline">
+                      Cancel
+                    </Button>
+                    <Button size="sm">Save</Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </Grid>
+        </div>
+      </Section>
+
+      <Section className="flex flex-col gap-6" id="command">
+        <Typography type="h4">Command</Typography>
+
+        <div className="border-border bg-background rounded-lg border p-6">
+          <Command className="rounded-lg border">
+            <CommandInput placeholder="Type a command or search..." />
+            <CommandList>
+              <CommandEmpty>No results found.</CommandEmpty>
+              <CommandGroup heading="Suggestions">
+                <CommandItem>
+                  <Icon name="Calendar" size="sm" className="mr-2" />
+                  Calendar
+                </CommandItem>
+                <CommandItem>
+                  <Icon name="Smile" size="sm" className="mr-2" />
+                  Search Emoji
+                </CommandItem>
+                <CommandItem>
+                  <Icon name="Calculator" size="sm" className="mr-2" />
+                  Calculator
+                </CommandItem>
+              </CommandGroup>
+              <CommandGroup heading="Settings">
+                <CommandItem>
+                  <Icon name="User" size="sm" className="mr-2" />
+                  Profile
+                </CommandItem>
+                <CommandItem>
+                  <Icon name="CreditCard" size="sm" className="mr-2" />
+                  Billing
+                </CommandItem>
+                <CommandItem>
+                  <Icon name="Settings" size="sm" className="mr-2" />
+                  Settings
+                </CommandItem>
+              </CommandGroup>
+            </CommandList>
+          </Command>
         </div>
       </Section>
     </main>

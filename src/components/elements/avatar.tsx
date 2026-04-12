@@ -60,7 +60,7 @@ export function AvatarFallback({ className, ...props }: AvatarFallbackProps) {
 }
 
 type AvatarBadgeProps = HTMLAttributes<HTMLSpanElement> & {
-  children: string;
+  children: ReactNode;
 };
 
 export function AvatarBadge({ className, ...props }: AvatarBadgeProps) {

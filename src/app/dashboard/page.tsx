@@ -37,7 +37,7 @@ import {
   BreadcrumbSeparator
 } from "@components/elements/breadcrumb";
 import { Avatar, AvatarFallback, AvatarImage } from "@components/elements/avatar";
-import { Calendar } from "@components/elements/calendar";
+import { Calendar } from "@components/layouts/calendar";
 
 interface StatCard {
   label: string;

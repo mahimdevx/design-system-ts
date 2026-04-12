@@ -6,9 +6,9 @@ import { Slot } from "@radix-ui/react-slot";
 
 import clsx from "clsx";
 
-import { Icon } from "@components/elements/icon";
-
 import { breadcrumbVariants } from "@styles/layouts/breadcrumb";
+
+import { Icon } from "@components/elements/icon";
 
 const { listVariants, itemVariants, linkVariants } = breadcrumbVariants();
 
@@ -63,7 +63,7 @@ export function BreadcrumbPage({ className, ...props }: BreadcrumbPageProps) {
       aria-current="page"
       aria-disabled="true"
       data-slot="breadcrumb-page"
-      className={clsx("font-normal text-foreground", className)}
+      className={clsx("text-foreground font-normal", className)}
       {...props}
     />
   );
