@@ -80,7 +80,6 @@ export function Tooltip({ children, content, ...props }: TooltipProps) {
   return (
     <TooltipRoot>
       <TooltipTrigger asChild>{children}</TooltipTrigger>
-
       <TooltipContent {...props}>{content}</TooltipContent>
     </TooltipRoot>
   );

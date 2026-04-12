@@ -18,8 +18,6 @@ export const Drawer = ({ shouldScaleBackground = false, ...props }: DrawerProps)
   <DrawerPrimitive.Root shouldScaleBackground={shouldScaleBackground} {...props} />
 );
 
-Drawer.displayName = "Drawer";
-
 export const DrawerTrigger = DrawerPrimitive.Trigger;
 
 export const DrawerPortal = DrawerPrimitive.Portal;
@@ -40,8 +38,6 @@ export const DrawerOverlay = forwardRef<HTMLDivElement, DrawerOverlayProps>(
   }
 );
 
-DrawerOverlay.displayName = DrawerPrimitive.Overlay.displayName;
-
 type DrawerContentProps = ComponentPropsWithoutRef<typeof DrawerPrimitive.Content> & {
   children: ReactNode;
 };
@@ -56,20 +52,18 @@ export const DrawerContent = forwardRef<HTMLDivElement, DrawerContentProps>(
           className={clsx(
             "fixed inset-x-0 bottom-0 z-50",
             "mt-24 flex h-auto flex-col",
-            "rounded-t-xl border bg-background",
+            "bg-background rounded-t-xl border",
             className
           )}
           {...props}
         >
-          <div className="mx-auto my-2 h-1 w-[100px] rounded-full bg-muted" />
+          <div className="bg-muted mx-auto my-2 h-1 w-25 rounded-full" />
           {children}
         </DrawerPrimitive.Content>
       </DrawerPortal>
     );
   }
 );
-
-DrawerContent.displayName = "DrawerContent";
 
 type DrawerHeaderProps = HTMLAttributes<HTMLDivElement>;
 
@@ -82,8 +76,6 @@ export function DrawerHeader({ className, ...props }: DrawerHeaderProps) {
   );
 }
 
-DrawerHeader.displayName = "DrawerHeader";
-
 type DrawerFooterProps = HTMLAttributes<HTMLDivElement>;
 
 export function DrawerFooter({ className, ...props }: DrawerFooterProps) {
@@ -92,8 +84,6 @@ export function DrawerFooter({ className, ...props }: DrawerFooterProps) {
   );
 }
 
-DrawerFooter.displayName = "DrawerFooter";
-
 type DrawerTitleProps = ComponentPropsWithoutRef<typeof DrawerPrimitive.Title>;
 
 export const DrawerTitle = forwardRef<HTMLHeadingElement, DrawerTitleProps>(
@@ -101,14 +91,12 @@ export const DrawerTitle = forwardRef<HTMLHeadingElement, DrawerTitleProps>(
     return (
       <DrawerPrimitive.Title
         ref={ref}
-        className={clsx("text-lg font-semibold leading-none tracking-tight", className)}
+        className={clsx("text-lg leading-none font-semibold tracking-tight", className)}
         {...props}
       />
     );
   }
 );
-
-DrawerTitle.displayName = DrawerPrimitive.Title.displayName;
 
 type DrawerDescriptionProps = ComponentPropsWithoutRef<
   typeof DrawerPrimitive.Description
@@ -119,11 +107,9 @@ export const DrawerDescription = forwardRef<HTMLParagraphElement, DrawerDescript
     return (
       <DrawerPrimitive.Description
         ref={ref}
-        className={clsx("text-sm text-muted-foreground", className)}
+        className={clsx("text-muted-foreground text-sm", className)}
         {...props}
       />
     );
   }
 );
-
-DrawerDescription.displayName = DrawerPrimitive.Description.displayName;
