@@ -97,6 +97,7 @@ import {
   CommandItem,
   CommandList
 } from "@components/layouts/command";
+import { SonnerShowcase } from "@components/elements/sonner-showcase";
 
 const TYPOGRAPHY_TYPES = ["h1", "h2", "h3", "h4", "h5", "h6", "p", "small"] as const;
 
@@ -1310,6 +1311,14 @@ export default function Home() {
               </CommandGroup>
             </CommandList>
           </Command>
+        </div>
+      </Section>
+
+      <Section className="flex flex-col gap-6" id="sonner">
+        <Typography type="h4">Sonner (Toast)</Typography>
+
+        <div className="border-border bg-background rounded-lg border p-6">
+          <SonnerShowcase />
         </div>
       </Section>
     </main>

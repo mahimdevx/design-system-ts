@@ -13,9 +13,9 @@ const toasterVariants = tv({
     toastVariants: [
       "flex items-start gap-2 p-5",
       "font-sans text-sm",
-      "border bg-background shadow-lg"
+      "bg-background border shadow-lg"
     ],
-    descriptionVariants: "text-sm text-muted-foreground",
+    descriptionVariants: "text-muted-foreground text-sm",
     actionButtonVariants: [
       "flex-shrink-0 px-2 py-0.5",
       "text-xs font-semibold",

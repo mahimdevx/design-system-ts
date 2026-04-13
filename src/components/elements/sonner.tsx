@@ -1,8 +1,7 @@
 "use client";
 
-import React from "react";
-
 import { toast as sonner } from "sonner";
+import { Toaster as Sonner, type ToasterProps } from "sonner";
 
 import { Button } from "./button";
 
@@ -27,9 +26,9 @@ function Toast(props: ToastProps) {
           <p className="mt-1 text-sm text-gray-500">{description}</p>
         </div>
       </div>
-      <div className="text-indigo-600 hover:text-indigo-500 focus:ring-indigo-500 focus:outline-hidden ml-5 shrink-0 rounded-md text-sm font-medium focus:ring-2 focus:ring-offset-2">
+      <div className="ml-5 shrink-0 rounded-md text-sm font-medium text-indigo-600 hover:text-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-hidden">
         <button
-          className="bg-indigo-50 text-indigo-600 hover:bg-indigo-100 rounded px-3 py-1 text-sm font-semibold"
+          className="rounded bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-600 hover:bg-indigo-100"
           onClick={() => {
             button.onClick();
             sonner.dismiss(id);

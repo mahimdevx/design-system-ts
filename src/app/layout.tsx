@@ -9,7 +9,7 @@ import "@styles/globals.css";
 import { ThemeProvider } from "@libs/providers";
 import { poppins, firaCode } from "@libs/fonts";
 
-// import { Toaster } from "@components/elements/toaster";
+import { Toaster } from "@components/elements/toaster";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -31,8 +31,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body className={bodyClasses}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           {children}
+          <Toaster />
         </ThemeProvider>
-        {/* <Toaster /> */}
       </body>
     </html>
   );
