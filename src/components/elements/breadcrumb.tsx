@@ -15,10 +15,8 @@ const { listVariants, itemVariants, linkVariants } = breadcrumbVariants();
 type BreadcrumbProps = ComponentProps<"nav">;
 
 export function Breadcrumb({ ...props }: BreadcrumbProps) {
-  return <nav aria-label="breadcrumb" data-slot="breadcrumb" {...props} />;
+  return <nav data-slot="breadcrumb" aria-label="breadcrumb" {...props} />;
 }
-
-Breadcrumb.displayName = "Breadcrumb";
 
 type BreadcrumbListProps = ComponentProps<"ol">;
 
@@ -28,8 +26,6 @@ export function BreadcrumbList({ className, ...props }: BreadcrumbListProps) {
   return <ol data-slot="breadcrumb-list" className={listClasses} {...props} />;
 }
 
-BreadcrumbList.displayName = "BreadcrumbList";
-
 type BreadcrumbItemProps = ComponentProps<"li">;
 
 export function BreadcrumbItem({ className, ...props }: BreadcrumbItemProps) {
@@ -38,38 +34,32 @@ export function BreadcrumbItem({ className, ...props }: BreadcrumbItemProps) {
   return <li data-slot="breadcrumb-item" className={itemClasses} {...props} />;
 }
 
-BreadcrumbItem.displayName = "BreadcrumbItem";
-
 type BreadcrumbLinkProps = ComponentProps<"a"> & {
   asChild?: boolean;
 };
 
 export function BreadcrumbLink({ asChild, className, ...props }: BreadcrumbLinkProps) {
-  const Component = asChild ? Slot : "a";
-
   const linkClasses = linkVariants({ className });
+
+  const Component = asChild ? Slot : "a";
 
   return <Component data-slot="breadcrumb-link" className={linkClasses} {...props} />;
 }
-
-BreadcrumbLink.displayName = "BreadcrumbLink";
 
 type BreadcrumbPageProps = ComponentProps<"span">;
 
 export function BreadcrumbPage({ className, ...props }: BreadcrumbPageProps) {
   return (
     <span
+      data-slot="breadcrumb-page"
       role="link"
       aria-current="page"
       aria-disabled="true"
-      data-slot="breadcrumb-page"
       className={clsx("text-foreground font-normal", className)}
       {...props}
     />
   );
 }
-
-BreadcrumbPage.displayName = "BreadcrumbPage";
 
 type BreadcrumbSeparatorProps = ComponentProps<"li">;
 
@@ -80,10 +70,10 @@ export function BreadcrumbSeparator({
 }: BreadcrumbSeparatorProps) {
   return (
     <li
+      data-slot="breadcrumb-separator"
       role="presentation"
       aria-hidden="true"
-      data-slot="breadcrumb-separator"
-      className={clsx("[&>svg]:h-3.5 [&>svg]:w-3.5", className)}
+      className={clsx("[&>svg]:size-3.5", className)}
       {...props}
     >
       {children ?? <Icon name="ChevronRight" />}
@@ -91,16 +81,15 @@ export function BreadcrumbSeparator({
   );
 }
 
-BreadcrumbSeparator.displayName = "BreadcrumbSeparator";
-
 type BreadcrumbEllipsisProps = ComponentProps<"span">;
 
 export function BreadcrumbEllipsis({ className, ...props }: BreadcrumbEllipsisProps) {
   return (
     <span
+      data-slot="breadcrumb-ellipsis"
       role="presentation"
       aria-hidden="true"
-      data-slot="breadcrumb-ellipsis"
+      className={clsx("flex size-9 items-center justify-center", className)}
       {...props}
     >
       <Icon name="Ellipsis" />
@@ -108,5 +97,3 @@ export function BreadcrumbEllipsis({ className, ...props }: BreadcrumbEllipsisPr
     </span>
   );
 }
-
-BreadcrumbEllipsis.displayName = "BreadcrumbEllipsis";

@@ -1,41 +1,48 @@
 "use client";
 
-import { ComponentProps } from "react";
+import { toast as sonner } from "sonner";
+import { Toaster as Sonner, type ToasterProps } from "sonner";
 
 import { useTheme } from "next-themes";
 
-import { Toaster as Sonner } from "sonner";
+import { Icon } from "./icon";
+import { Button } from "./button";
 
-import { tv } from "tailwind-variants";
+interface ToastProps {
+  id: string | number;
+  title: string;
+  description: string;
+  button: {
+    label: string;
+    onClick: () => void;
+  };
+}
 
-const toasterVariants = tv({
-  slots: {
-    toastVariants: [
-      "flex items-start gap-2 p-5",
-      "font-sans text-sm",
-      "bg-background border shadow-lg"
-    ],
-    descriptionVariants: "text-muted-foreground text-sm",
-    actionButtonVariants: [
-      "flex-shrink-0 px-2 py-0.5",
-      "text-xs font-semibold",
-      "bg-primary text-primary-foreground",
-      "rounded-md"
-    ],
-    cancelButtonVariants: "bg-muted group-[.toast]:text-muted-foreground",
-    iconVariants: "mt-0.5 h-4 w-4 flex-shrink-0"
-  }
-});
+function Toast(props: ToastProps) {
+  const { title, description, button, id } = props;
 
-const {
-  toastVariants,
-  descriptionVariants,
-  actionButtonVariants,
-  cancelButtonVariants,
-  iconVariants
-} = toasterVariants();
-
-type ToasterProps = ComponentProps<typeof Sonner>;
+  return (
+    <div>
+      <div className="flex flex-1 items-center">
+        <div className="w-full">
+          <p className="text-sm font-medium text-gray-900">{title}</p>
+          <p className="mt-1 text-sm text-gray-500">{description}</p>
+        </div>
+      </div>
+      <div className="ml-5 shrink-0 rounded-md text-sm font-medium text-indigo-600 hover:text-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-hidden">
+        <button
+          className="rounded bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-600 hover:bg-indigo-100"
+          onClick={() => {
+            button.onClick();
+            sonner.dismiss(id);
+          }}
+        >
+          {button.label}
+        </button>
+      </div>
+    </div>
+  );
+}
 
 export function Toaster({ ...props }: ToasterProps) {
   const { theme = "system" } = useTheme();
@@ -43,20 +50,64 @@ export function Toaster({ ...props }: ToasterProps) {
   return (
     <Sonner
       theme={theme as ToasterProps["theme"]}
-      expand={false}
-      position="bottom-center"
-      closeButton
-      richColors
+      className="toaster group"
+      icons={{
+        success: <Icon name="CircleCheck" className="size-4" />,
+        info: <Icon name="Info" className="size-4" />,
+        warning: <Icon name="TriangleAlert" className="size-4" />,
+        error: <Icon name="X" className="size-4" />,
+        loading: <Icon name="Loader" className="size-4 animate-spin" />
+      }}
+      style={
+        {
+          "--normal-bg": "var(--popover)",
+          "--normal-text": "var(--popover-foreground)",
+          "--normal-border": "var(--border)",
+          "--border-radius": "var(--radius)"
+        } as React.CSSProperties
+      }
       toastOptions={{
         classNames: {
-          toast: toastVariants(),
-          description: descriptionVariants(),
-          actionButton: actionButtonVariants(),
-          cancelButton: cancelButtonVariants(),
-          icon: iconVariants()
+          toast: "cn-toast"
         }
       }}
       {...props}
     />
+  );
+}
+
+function toast(toast: Omit<ToastProps, "id">) {
+  return sonner.custom((id) => (
+    <Toast
+      id={id}
+      title={toast.title}
+      description={toast.description}
+      button={{
+        label: toast.button.label,
+        onClick: () => console.log("Button clicked")
+      }}
+    />
+  ));
+}
+
+export default function Headless() {
+  return (
+    <Button
+      size="sm"
+      rounded
+      onClick={() => {
+        toast({
+          title: "This is a headless toast",
+          description:
+            "You have full control of styles and jsx, while still having the animations.",
+          button: {
+            label: "Reply",
+            onClick: () => sonner.dismiss()
+          }
+        });
+      }}
+    >
+      Render toast
+    </Button>
   );
 }
