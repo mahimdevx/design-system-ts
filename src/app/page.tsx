@@ -55,7 +55,12 @@ import {
   CardHeader,
   CardTitle
 } from "@components/layouts/card";
-import { Alert, AlertDescription, AlertTitle } from "@components/elements/alert";
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+  AlertAction
+} from "@components/elements/alert";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -875,28 +880,98 @@ export default function Home() {
         <Typography type="h4">Alert</Typography>
 
         <div className="border-border bg-background rounded-lg border p-6">
-          <div className="flex flex-col gap-4">
-            <Alert>
-              <Icon name="AlertCircle" />
-              <AlertTitle>Heads up!</AlertTitle>
-              <AlertDescription>
-                This is a basic alert with an icon and description.
-              </AlertDescription>
-            </Alert>
+          <div className="flex flex-col gap-10">
+            <div className="flex flex-col gap-4">
+              <Typography type="h6">Variants</Typography>
+              <div className="flex flex-col gap-4">
+                <Alert variant="primary">
+                  <Icon name="Info" />
+                  <AlertTitle>Primary Alert</AlertTitle>
+                  <AlertDescription>
+                    This is a primary alert with important information.
+                  </AlertDescription>
+                </Alert>
 
-            <Alert>
-              <Icon name="CheckCircle2" />
-              <AlertTitle>Success</AlertTitle>
-              <AlertDescription>Your action was completed successfully.</AlertDescription>
-            </Alert>
+                <Alert variant="secondary">
+                  <Icon name="Info" />
+                  <AlertTitle>Secondary Alert</AlertTitle>
+                  <AlertDescription>
+                    This is a secondary alert for general information.
+                  </AlertDescription>
+                </Alert>
 
-            <Alert>
-              <Icon name="AlertTriangle" />
-              <AlertTitle>Warning</AlertTitle>
-              <AlertDescription>
-                This is an important warning that needs your attention.
-              </AlertDescription>
-            </Alert>
+                <Alert variant="accent">
+                  <Icon name="Info" />
+                  <AlertTitle>Accent Alert</AlertTitle>
+                  <AlertDescription>
+                    This is an accent alert for highlighted information.
+                  </AlertDescription>
+                </Alert>
+
+                <Alert variant="soft">
+                  <Icon name="Info" />
+                  <AlertTitle>Soft Alert</AlertTitle>
+                  <AlertDescription>
+                    This is a soft alert with subtle styling.
+                  </AlertDescription>
+                </Alert>
+
+                <Alert variant="outline">
+                  <Icon name="Info" />
+                  <AlertTitle>Outline Alert</AlertTitle>
+                  <AlertDescription>
+                    This is an outline alert with border-only styling.
+                  </AlertDescription>
+                </Alert>
+
+                <Alert variant="muted">
+                  <Icon name="Info" />
+                  <AlertTitle>Muted Alert</AlertTitle>
+                  <AlertDescription>
+                    This is a muted alert for less prominent messages.
+                  </AlertDescription>
+                </Alert>
+
+                <Alert variant="destructive">
+                  <Icon name="AlertTriangle" />
+                  <AlertTitle>Destructive Alert</AlertTitle>
+                  <AlertDescription>
+                    This is a destructive alert for error or warning messages.
+                  </AlertDescription>
+                </Alert>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-4">
+              <Typography type="h6">With Actions</Typography>
+              <div className="flex flex-col gap-4">
+                <Alert variant="primary">
+                  <Icon name="CheckCircle2" />
+                  <AlertTitle>Success!</AlertTitle>
+                  <AlertDescription>
+                    Your changes have been saved successfully.
+                  </AlertDescription>
+                  <AlertAction>
+                    <Button size="sm" variant="outline">
+                      View Changes
+                    </Button>
+                  </AlertAction>
+                </Alert>
+
+                <Alert variant="destructive">
+                  <Icon name="AlertCircle" />
+                  <AlertTitle>Action Required</AlertTitle>
+                  <AlertDescription>
+                    Please review and confirm your account settings.
+                  </AlertDescription>
+                  <AlertAction>
+                    <Button size="sm" variant="destructive">
+                      Review Now
+                    </Button>
+                  </AlertAction>
+                </Alert>
+              </div>
+            </div>
           </div>
         </div>
       </Section>
