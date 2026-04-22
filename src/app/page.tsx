@@ -885,7 +885,7 @@ export default function Home() {
               <Typography type="h6">Variants</Typography>
               <div className="flex flex-col gap-4">
                 <Alert variant="primary">
-                  <Icon name="Info" />
+                  <Icon name="Info" size="sm" />
                   <AlertTitle>Primary Alert</AlertTitle>
                   <AlertDescription>
                     This is a primary alert with important information.
@@ -945,28 +945,27 @@ export default function Home() {
             <div className="flex flex-col gap-4">
               <Typography type="h6">With Actions</Typography>
               <div className="flex flex-col gap-4">
-                <Alert variant="primary">
-                  <Icon name="CheckCircle2" />
+                <Alert variant="accent">
                   <AlertTitle>Success!</AlertTitle>
                   <AlertDescription>
                     Your changes have been saved successfully.
                   </AlertDescription>
                   <AlertAction>
-                    <Button size="sm" variant="outline">
+                    <Button size="xxs" variant="soft" className="rounded-md">
                       View Changes
                     </Button>
                   </AlertAction>
                 </Alert>
 
                 <Alert variant="destructive">
-                  <Icon name="AlertCircle" />
+                  <Icon name="CircleAlert" />
                   <AlertTitle>Action Required</AlertTitle>
                   <AlertDescription>
                     Please review and confirm your account settings.
                   </AlertDescription>
                   <AlertAction>
-                    <Button size="sm" variant="destructive">
-                      Review Now
+                    <Button size="xxs" variant="destructive" className="rounded-md">
+                      enable
                     </Button>
                   </AlertAction>
                 </Alert>

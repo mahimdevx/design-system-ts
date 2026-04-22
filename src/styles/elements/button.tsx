@@ -14,11 +14,12 @@ export const buttonVariants = tv({
   ],
   variants: {
     size: {
-      xs: "h-8 px-4 py-1.5 text-xs leading-[17px]",
-      sm: "h-10 px-5 py-2.5 text-sm leading-[17px]",
-      base: "h-12 px-6 py-3 text-sm leading-[17px]",
-      lg: "h-14 px-7 py-4 text-base leading-[17px]",
-      xl: "h-16 px-8 py-5 text-lg leading-[17px]"
+      xxs: "h-6 px-2 py-0.5 text-xs leading-[16px]",
+      xs: "h-8 px-4 py-1.5 text-xs leading-[16px]",
+      sm: "h-10 px-5 py-2.5 text-sm leading-[16px]",
+      base: "h-12 px-6 py-3 text-sm leading-[16px]",
+      lg: "h-14 px-7 py-4 text-base leading-[16px]",
+      xl: "h-16 px-8 py-5 text-lg leading-[16px]"
     },
     variant: {
       primary: "bg-primary text-primary-foreground",
@@ -75,8 +76,8 @@ export const buttonVariants = tv({
   ],
   defaultVariants: {
     size: "base",
-    iconOnly: false,
     variant: "primary",
+    iconOnly: false,
     rounded: false
   }
 });
