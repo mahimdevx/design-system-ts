@@ -1,9 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@layer variables {
-  @import "./variables.css";
-}
+@import "./variables.css";
 
 * {
   box-sizing: border-box;
@@ -45,6 +43,4 @@ input[type="number"] {
   animation: 1s cubic-bezier(0.4, 0, 0.2, 1) hidden;
 }
 
-@layer utilities {
-  @import "./utilites.css";
-}
+@import "./utilites.css";

@@ -25,7 +25,11 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
-    "**/*.mts"
-, "src/libs/providers.js"  ],
+    "**/*.mts",
+    "src/libs/providers.js",
+    "prettier.config.mjs",
+    "eslint.config.mjs",
+    "postcss.config.mjs"
+  ],
   "exclude": ["node_modules"]
 }
